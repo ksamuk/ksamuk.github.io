@@ -52,7 +52,7 @@ body {
   font-family: 'Lato', arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  font-weight: 300;
+  font-weight: 100;
   color: #2e2e2e;
 }
 
@@ -1921,7 +1921,7 @@ a.navbar-logo {
 .filter-button {
   margin: 0px;
   font-size: 14px;
-  font-weight: 300 !important;
+  font-weight: 100 !important;
   color: #28bbf8;
   border-color: #28bbf8;
   border: 1px solid;
@@ -1934,7 +1934,7 @@ a.navbar-logo {
 
 .filter-button:hover {
   font-size: 14px;
-  font-weight: 300 !important;
+  font-weight: 100 !important;
   color: #fff;
   border-color: #28bbf8;
   border: 1px solid;
@@ -2038,7 +2038,7 @@ a.navbar-logo {
   padding: 3px 12px 1px 14px;
   font-size: 12px;
   border-radius: 30px;
-  font-weight: 300 !important;
+  font-weight: 100 !important;
   color: #28bbf8;
   border-color: #28bbf8;
   border: 1px solid;
@@ -2057,7 +2057,7 @@ a.navbar-logo {
   padding: 3px 12px 1px 14px;
   font-size: 12px;
   border-radius: 30px;
-  font-weight: 300 !important;
+  font-weight: 100 !important;
   color: #fff;
   border-color: #28bbf8;
   border: 1px solid;
@@ -2105,7 +2105,7 @@ a.navbar-logo {
   font-family: 'Lato', arial, sans-serif;
   font-size: 12px;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 100;
   line-height: 1.42857143;
   text-align: left;
   text-align: start;
@@ -2179,7 +2179,7 @@ p.hide {
   padding: 2px 8px 1px 10px;
   font-size: 16px;
   border-radius: 30px;
-  font-weight: 300 !important;
+  font-weight: 100 !important;
   color: #28bbf8;
   border-color: #28bbf8;
   border: 0px solid;
@@ -2198,7 +2198,7 @@ p.hide {
   padding: 2px 8px 1px 10px;
   font-size: 16px;
   border-radius: 30px;
-  font-weight: 300 !important;
+  font-weight: 100 !important;
   color: #fff;
   border-color: #28bbf8;
   border: 0px solid;
