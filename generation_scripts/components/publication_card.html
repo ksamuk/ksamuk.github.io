@@ -1,0 +1,31 @@
+<!--PUBLICATION CARD-->
+<div class="col-12 col-lg-6 col-xl-6 mb-4 filter @pub_year@">
+
+  <span class="label label-primary hidden">All</span>
+
+  <div class="card pub-card h-100">
+    <div class="card-body pub-card-body">
+      <!--CARD TEXT-->
+      <h3 class="pub-title">@title@</h3>
+      <p class="pub-text">
+        @author_year@<br>
+        @journal_pages@
+      </p>
+      <!--FOOTER/BUTTONS-->
+      <div class="card-footer pub-footer">
+        <div class="text-left">
+          <!--BUTTONS-->
+          <a href="@pdf_link@" class="btn pub-btn"><i class="fas fa-file-alt"></i> PDF</a>
+          <a href="@html_link@" class="btn pub-btn"><i class="fas fa-file-code"></i> HTML</a>
+
+          <a href="javascript:;" id="pubbutton_apa" class="btn pub-btn animatebutton faster" data-bs-toggle="tooltip" data-bs-placement="bottom" data-content="test" title="Copy citation to clipboard"
+            onclick="bounceClick(this.id);copyToClipboard('@citation_text_apa@')"><i class="fas fa-feather"></i> APA</a>
+
+          <a href="javascript:;" id="pubbutton_bib" class="btn btn-primary pub-btn animatebutton faster" data-bs-toggle="tooltip" data-bs-placement="bottom" data-content="test" title="Copy citation to clipboard"
+            onclick="bounceClick(this.id);copyToClipboard(`@citation_text_bibtex@`)"><i class="fas fa-feather"></i> BiBteX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END OF PUBLICATION CARD-->

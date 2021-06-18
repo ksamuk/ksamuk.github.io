@@ -1,0 +1,47 @@
+a {
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    color: #28bbf8;
+    text-decoration: none !important;
+}
+
+a:hover,
+a:focus,
+a:active {
+    outline: none;
+    text-decoration: none !important;
+    color: #2e2e2e;
+}
+
+body > div > a {
+    text-decoration: none !important;
+}
+
+i {
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    color: #28bbf8;
+    text-decoration: none !important;
+}
+
+i:hover,
+i:focus,
+i:active {
+    outline: none;
+    text-decoration: none !important;
+}
+
+body > div > i {
+    text-decoration: none;
+}
+
+
+fh5co-mobile-menu > fh5co-mobile-menu-ul > a {
+    text-decoration: none !important;
+}
