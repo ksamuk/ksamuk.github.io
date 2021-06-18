@@ -101,7 +101,7 @@
   padding: 5px 10px 5px 10px;
   font-size: 12px;
   border-radius: 30px;
-  font-weight: 300 !important;
+  font-weight: 100 !important;
   color: #fff;
   border-color: #fff;
   border-bottom-style: solid !important;
@@ -141,7 +141,7 @@
   padding: 5px 10px 5px 10px;
   font-size: 12px;
   border-radius: 30px;
-  font-weight: 300 !important;
+  font-weight: 100 !important;
   color: #fff;
   border-color: #fff;
   border-bottom-style: solid !important;
@@ -187,7 +187,7 @@
 
 .profile-text {
   text-align: left;
-  font-weight: 300;
+  font-weight: 100;
   font-size: 15px;
   color: #2e2e2e;
   text-decoration: none !important;
