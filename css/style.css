@@ -15,11 +15,10 @@ $enable-responsive-font-sizes: true;
 $font-size-base: 1rem;
 
 @font-face {
-  font-family: 'themify';
-  src: url("../fonts/themify/themify.eot?-fvbane");
-  src: url("../fonts/themify/themify.eot?#iefix-fvbane") format("embedded-opentype"), url("../fonts/themify/themify.woff?-fvbane") format("woff"), url("../fonts/themify/themify.ttf?-fvbane") format("truetype"), url("../fonts/themify/themify.svg?-fvbane#themify") format("svg");
-  font-weight: normal;
+  font-family: 'Lato';
   font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wXg.woff2) format('woff2');
 }
 
 html {
@@ -52,7 +51,7 @@ body {
   font-family: 'Lato', arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  font-weight: 100;
+  font-weight: 300;
   color: #2e2e2e;
 }
 
@@ -416,7 +415,7 @@ textarea {
 
 #fh5co-primary-menu>li>.sf-with-ul:after {
   border: none !important;
-  font-family: 'themify';
+  font-family: 'Lato';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -436,7 +435,7 @@ textarea {
 
 #fh5co-primary-menu>li>ul li>.sf-with-ul:after {
   border: none !important;
-  font-family: 'themify';
+  font-family: 'Lato';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -594,7 +593,7 @@ textarea {
 }
 
 #fh5co-mobile-menu #fh5co-mobile-menu-ul .fh5co-sub-ddown:after {
-  font-family: 'themify';
+  font-family: 'Lato';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1370,7 +1369,7 @@ Components
 }
 
 .fh5co-accordion .panel-heading .accordion-toggle:after {
-  font-family: 'themify';
+  font-family: 'Lato';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1391,7 +1390,7 @@ Components
 }
 
 .fh5co-accordion .panel-heading.collapsed .accordion-toggle:after {
-  font-family: 'themify';
+  font-family: 'Lato';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1921,7 +1920,7 @@ a.navbar-logo {
 .filter-button {
   margin: 0px;
   font-size: 14px;
-  font-weight: 100 !important;
+  font-weight: 300 !important;
   color: #28bbf8;
   border-color: #28bbf8;
   border: 1px solid;
@@ -1934,7 +1933,7 @@ a.navbar-logo {
 
 .filter-button:hover {
   font-size: 14px;
-  font-weight: 100 !important;
+  font-weight: 300 !important;
   color: #fff;
   border-color: #28bbf8;
   border: 1px solid;
@@ -2038,7 +2037,7 @@ a.navbar-logo {
   padding: 3px 12px 1px 14px;
   font-size: 12px;
   border-radius: 30px;
-  font-weight: 100 !important;
+  font-weight: 300 !important;
   color: #28bbf8;
   border-color: #28bbf8;
   border: 1px solid;
@@ -2057,7 +2056,7 @@ a.navbar-logo {
   padding: 3px 12px 1px 14px;
   font-size: 12px;
   border-radius: 30px;
-  font-weight: 100 !important;
+  font-weight: 300 !important;
   color: #fff;
   border-color: #28bbf8;
   border: 1px solid;
@@ -2105,7 +2104,7 @@ a.navbar-logo {
   font-family: 'Lato', arial, sans-serif;
   font-size: 12px;
   font-style: normal;
-  font-weight: 100;
+  font-weight: 300;
   line-height: 1.42857143;
   text-align: left;
   text-align: start;
@@ -2179,7 +2178,7 @@ p.hide {
   padding: 2px 8px 1px 10px;
   font-size: 16px;
   border-radius: 30px;
-  font-weight: 100 !important;
+  font-weight: 300 !important;
   color: #28bbf8;
   border-color: #28bbf8;
   border: 0px solid;
@@ -2198,7 +2197,7 @@ p.hide {
   padding: 2px 8px 1px 10px;
   font-size: 16px;
   border-radius: 30px;
-  font-weight: 100 !important;
+  font-weight: 300 !important;
   color: #fff;
   border-color: #28bbf8;
   border: 0px solid;
