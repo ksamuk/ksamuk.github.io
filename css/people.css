@@ -193,10 +193,6 @@
   text-decoration: none !important;
 }
 
-.container {
-  padding: 2px 5px;
-}
-
 .bounceIn {
   -webkit-animation: bounceIn 200ms;
   /* Safari 4+ */
