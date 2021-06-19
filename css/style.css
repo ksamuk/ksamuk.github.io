@@ -17,7 +17,7 @@ $font-size-base: 1rem;
 @font-face {
   font-family: 'Lato';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wXg.woff2) format('woff2');
 }
 
@@ -51,7 +51,7 @@ body {
   font-family: 'Lato', arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  font-weight: 100;
+  font-weight: 300;
   color: #2e2e2e;
 }
 
@@ -2242,7 +2242,7 @@ p.hide {
   padding: 20px;
   border: 0px solid #ddd;
   border-radius: 4px;
-  font-weight: 400;
+  font-weight: 300;
   -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
