@@ -2065,6 +2065,12 @@ a.navbar-logo {
   background-color: #28bbf8;
 }
 
+@media screen and (max-width: 768px) {
+  .pub-btn {
+    font-size: 11px;
+  }
+}
+
 /*tab stuff*/
 /*contact stuff*/
 .map-container-5 {
