@@ -2101,7 +2101,17 @@ a.navbar-logo {
 
 @media screen and (max-width: 768px) {
   .pub-btn {
-    font-size: 11px;
+    font-size: 10px;
+  }
+
+  .pub-btn:hover,
+  .pub-btn:focus,
+  .pub-btn:active {
+    font-size: 10px;
+  }
+
+  .pub-text {
+    margin-bottom: 0px;
   }
 }
 
