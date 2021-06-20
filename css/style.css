@@ -15,10 +15,11 @@ $enable-responsive-font-sizes: true;
 $font-size-base: 1rem;
 
 @font-face {
-  font-family: 'Lato';
+  font-family: 'themify';
+  src: url("../fonts/themify/themify.eot?-fvbane");
+  src: url("../fonts/themify/themify.eot?#iefix-fvbane") format("embedded-opentype"), url("../fonts/themify/themify.woff?-fvbane") format("woff"), url("../fonts/themify/themify.ttf?-fvbane") format("truetype"), url("../fonts/themify/themify.svg?-fvbane#themify") format("svg");
+  font-weight: normal;
   font-style: normal;
-  font-weight: 300;
-  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wXg.woff2) format('woff2');
 }
 
 html {
@@ -287,9 +288,14 @@ textarea {
 
 #fh5co-logo {
   font-size: 20px;
-  margin: 16px 0 0 0;
+  margin: 12px 0 0 0;
   padding: 0;
   font-weight: bold;
+}
+
+#fh5co-header-section.fh5co-scrolled #fh5co-logo {
+  margin: 18px 0 0 0;
+  padding: 0;
 }
 
 #fh5co-logo a {
@@ -406,7 +412,7 @@ textarea {
 }
 
 #fh5co-menu-wrap .sf-menu a {
-  padding: 2em 2em 2em 2em;
+  padding: 1.75em 1.75em 1.75em 1.75em;
 }
 
 #fh5co-primary-menu>li>ul li.active>a {
@@ -415,7 +421,7 @@ textarea {
 
 #fh5co-primary-menu>li>.sf-with-ul:after {
   border: none !important;
-  font-family: 'Lato';
+  font-family: 'themify';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -435,7 +441,7 @@ textarea {
 
 #fh5co-primary-menu>li>ul li>.sf-with-ul:after {
   border: none !important;
-  font-family: 'Lato';
+  font-family: 'themify';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1810,6 +1816,14 @@ a.navbar-logo {
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
 }
 
+.hex-img {
+  width: 100%;
+  height: auto;
+  margin: 20px;
+  -webkit-filter: drop-shadow(3px 3px 3px #666);
+  filter: drop-shadow(3px 3px 3px #666);
+}
+
 .card-img-right {
   width: 100%;
   height: auto;
@@ -1824,7 +1838,7 @@ a.navbar-logo {
   font-size: 14px;
   margin-right: 20px;
   margin-left: -20px;
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 0px;
 }
 
@@ -1855,6 +1869,17 @@ a.navbar-logo {
     margin-left: 10px;
     margin-right: 0px;
   }
+
+  .hex-img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin: 0px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .card-img-research {}
 }
 
 .grow {
