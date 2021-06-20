@@ -317,6 +317,7 @@ textarea {
 .sf-menu {
   margin: 0 !important;
   font-weight: 300;
+  font-style: normal;
 }
 
 .sf-menu {
@@ -375,6 +376,7 @@ textarea {
 
 .sf-menu ul li {
   background: transparent;
+  font-weight: normal;
 }
 
 .sf-arrows .sf-with-ul {
@@ -419,6 +421,7 @@ textarea {
 
 #fh5co-primary-menu>li>ul li.active>a {
   color: #28bbf8 !important;
+  font-weight: bold;
 }
 
 #fh5co-primary-menu>li>.sf-with-ul:after {
@@ -468,6 +471,7 @@ textarea {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px;
+  font-style: normal;
 }
 
 #fh5co-primary-menu .fh5co-sub-menu:before {
@@ -517,6 +521,7 @@ textarea {
   padding: 0 15px;
   font-size: 14px;
   line-height: 26px;
+  font-weight: 300 !important;
   color: #ffffff !important;
   text-decoration: none !important;
   text-transform: none;
@@ -524,8 +529,10 @@ textarea {
 }
 
 #fh5co-primary-menu .fh5co-sub-menu a:hover {
-  color: #28bbf8 !important;
+  color: #ffffff !important;
   text-decoration: none !important;
+  font-weight: 300 !important;
+  font-weight: bold !important;
 }
 
 /* Mobile Menu */
@@ -601,7 +608,7 @@ textarea {
 }
 
 #fh5co-mobile-menu #fh5co-mobile-menu-ul .fh5co-sub-ddown:after {
-  font-family: 'Lato';
+  font-family: 'themify';
   speak: none;
   font-style: normal;
   font-weight: normal;
