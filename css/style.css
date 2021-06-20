@@ -316,6 +316,7 @@ textarea {
 /* Superfish Override Menu */
 .sf-menu {
   margin: 0 !important;
+  font-weight: 300;
 }
 
 .sf-menu {
@@ -330,7 +331,7 @@ textarea {
 }
 
 .sf-menu a {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.8);
   padding: .75em 1em;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -364,6 +365,7 @@ textarea {
 .sf-menu ul li.sfHover a,
 .sf-menu li.active a {
   color: #ffffff;
+  font-weight: bold;
 }
 
 .sf-menu ul li:hover,
