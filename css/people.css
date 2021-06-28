@@ -9,10 +9,10 @@
   padding: 0px;
   border: 0px solid #ddd;
   font-weight: 300;
-  border-radius: 4px;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
-  -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);
+  -moz-box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);
   overflow: visible;
 }
 
@@ -79,7 +79,7 @@
   margin: 0px;
   bottom: 0;
   width: 100%;
-  border-top: 1px solid #EEEEEE;
+  border-top: 0px solid #EEEEEE;
   color: #999999;
   background-color: #fff;
 }
@@ -88,7 +88,7 @@
   margin: 0px;
   bottom: 0;
   width: 100%;
-  border-top: 1px solid #EEEEEE;
+  border-top: 0px solid #999999;
   color: #999999;
   background-color: #fff;
 }
@@ -100,7 +100,6 @@
   margin-left: 0px;
   margin-bottom: 0px;
   padding: 5px 10px 5px 10px;
-  font-size: 12px;
   border-radius: 30px;
   font-weight: 300 !important;
   color: #fff;
@@ -140,7 +139,6 @@
   margin-left: 0px;
   margin-bottom: 3px;
   padding: 5px 10px 5px 10px;
-  font-size: 12px;
   border-radius: 30px;
   font-weight: 300 !important;
   color: #fff;
@@ -154,9 +152,9 @@
   height: 150px;
   width: 150px;
   text-align: center;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.12);
   margin: 0px 0px 0px 0px;
 }
 
@@ -174,24 +172,14 @@
 
 .profile-name {
   letter-spacing: 2px;
-  line-height: 0.5;
+  text-transform: uppercase;
 }
 
 .profile-title {
-  letter-spacing: 2px;
-  text-align: center;
-  line-height: 0;
-  margin-bottom: 18px;
-  @include font-size(4rem);
   word-break: normal;
-}
-
-.profile-text {
-  text-align: left;
-  font-weight: 300 !important;
-  font-size: 15px;
-  color: #2e2e2e;
-  text-decoration: none !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 300
 }
 
 .bounceIn {
