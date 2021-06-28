@@ -5,7 +5,7 @@ var retype = {
 	//		  It works cleaner if neighboring words have different first letters.
 	//		  Spaces in phrases can cause a hiccup. Best practice to keep phrases as single words.
 	retypePhrases: [
-		'population genetics.',
+		'bioinformatics.',
 		'field studies.',
 		'simulations.',
 		'crispr/cas9.',
