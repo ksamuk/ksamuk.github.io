@@ -1,10 +1,10 @@
 Korunes, K. L., & Samuk, K. (2021). pixy: Unbiased estimation of nucleotide diversity and divergence in the presence of missing data. Molecular Ecology Resources, 21(4), 1359–1368.
 
-Korunes, K. L., Samuk, K., & Noor, M. A. F. (2021). Disentangling Types of Linked Selection Using Patterns of Nucleotide Variation in Drosophila pseudoobscura. In: Population Genomics, 1–22. Springer International Publishing.
+Korunes, K. L., Samuk, K., & Noor, M. A. F. (2021). Disentangling Types of Linked Selection Using Patterns of Nucleotide Variation in Drosophila pseudoobscura. In Population Genomics (pp. 1–22). Springer International Publishing.
 
 Miller, S. E., Legan, A. W., Henshaw, M. T., Ostevik, K. L., Samuk, K., Uy, F. M. K., & Sheehan, M. J. (2020). Evolutionary dynamics of recent selection on cognitive abilities. Proceedings of the National Academy of Sciences of the United States of America, 117(6), 3045–3052.
 
-Miller, S. E., Samuk, K. M., & Rennison, D. J. (2016). An experimental test of the effect of predation upon behaviour and trait correlations in the threespine stickleback. Biological Journal of the Linnean Society, 119(1), 117–125.
+Miller, S. E., Samuk, K. M., & Rennison, D. J. (2016). An experimental test of the effect of predation upon behaviour and trait correlations in the threespine stickleback. Biological Journal of the Linnean Society. Linnean Society of London, 119(1), 117–125.
 
 Ostevik, K. L., Samuk, K., & Rieseberg, L. H. (2020). Ancestral Reconstruction of Karyotypes Reveals an Exceptional Rate of Nonrandom Chromosomal Evolution in Sunflower. Genetics, 214(4), 1031–1045.
 
@@ -18,10 +18,14 @@ Samuk, K., & Avilés, L. (2013). Indiscriminate care of offspring predates the e
 
 Samuk, K., Iritani, D., & Schluter, D. (2014). Reversed brain size sexual dimorphism accompanies loss of parental care in white sticklebacks. Ecology and Evolution, 4(16), 3236–3243.
 
+Samuk, K. M. (2016). The evolutionary genomics of adaptation and speciation in the threespine stickleback [University of British Columbia]. https://open.library.ubc.ca/collections/ubctheses/24/items/1.0307145
+
 Samuk, K. M., LeDue, E. E., & Avilés, L. (2012). Sister clade comparisons reveal reduced maternal care behavior in social cobweb spiders. Behavioral Ecology: Official Journal of the International Society for Behavioral Ecology, 23(1), 35–43.
 
-Samuk, K., Manzano-Winkler, B., Ritz, K. R., & Noor, M. A. F. (2020). Natural Selection Shapes Variation in Genome-wide Recombination Rate in Drosophila pseudoobscura. Current Biology: 30(8), 1517–1528.e6.
+Samuk, K., Manzano-Winkler, B., Ritz, K. R., & Noor, M. A. F. (2020). Natural Selection Shapes Variation in Genome-wide Recombination Rate in Drosophila pseudoobscura. Current Biology: CB, 30(8), 1517–1528.e6.
+
+Samuk, K., & Noor, M. A. F. (2021). Gene flow biases population genetic inference of recombination rate. In bioRxiv (p. 2021.09.26.461846). https://doi.org/10.1101/2021.09.26.461846
 
 Samuk, K., Owens, G. L., Delmore, K. E., Miller, S. E., Rennison, D. J., & Schluter, D. (2017). Gene flow and selection interact to promote adaptive divergence in regions of low recombination. Molecular Ecology, 26(17), 4378–4390.
 
-Samuk, K., Xue, J., & Rennision, D. J. (2018). Exposure to predators does not lead to the evolution of larger brains in experimental populations of threespine stickleback. Evolution, 72(4), 916–929.
+Samuk, K., Xue, J., & Rennision, D. J. (2018). Exposure to predators does not lead to the evolution of larger brains in experimental populations of threespine stickleback. Evolution; International Journal of Organic Evolution, 72(4), 916–929.
