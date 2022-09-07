@@ -4,7 +4,7 @@ library("fuzzyjoin")
 library("lubridate")
 #remotes::install_github("ROpenSci/bibtex")
 #install.packages("fuzzyjoin")
-#install.packages("RefManageR")
+#remotes::install_github("ropensci/RefManageR")
 #install.packages("bibtex")
 
 # bibtex citations
@@ -27,8 +27,7 @@ pub_csv <- read_csv("data/lab_bibliography.csv") %>%
   select(Title, Abstract, `Date published`) %>%
   rename(title=Title, pub_date = `Date published`) %>%
   mutate(pub_date = ifelse(nchar(pub_date) == 7, paste0(pub_date, "-01"), pub_date)) %>%
-  arrange(desc(pub_date)) %>%
-  tibble
+  arrange(desc(pub_date)) 
 
 # links to files/urls/code/data
 meta_df <- read_csv("data/lab_bibliography_links.csv")

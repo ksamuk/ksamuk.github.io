@@ -1,4 +1,4 @@
-Korunes, K. L., & Samuk, K. (2021). pixy: Unbiased estimation of nucleotide diversity and divergence in the presence of missing data. Molecular Ecology Resources, 21(4), 1359–1368.
+Korunes, K. L., & Samuk, K. (2020). pixy: Unbiased estimation of nucleotide diversity and divergence in the presence of missing data. In Mol. Ecol. Resour. (Issue 4, p. 2020.06.27.175091). https://doi.org/10.1101/2020.06.27.175091
 
 Korunes, K. L., Samuk, K., & Noor, M. A. F. (2021). Disentangling Types of Linked Selection Using Patterns of Nucleotide Variation in Drosophila pseudoobscura. In Population Genomics (pp. 1–22). Springer International Publishing.
 
@@ -11,6 +11,8 @@ Ostevik, K. L., Samuk, K., & Rieseberg, L. H. (2020). Ancestral Reconstruction o
 Owens, G. L., & Samuk, K. (2020). Adaptive introgression during environmental change can weaken reproductive isolation. Nature Climate Change, 10(1), 58–62.
 
 Rennison, D. J., Delmore, K. E., Samuk, K., Owens, G. L., & Miller, S. E. (2020). Shared Patterns of Genome-Wide Differentiation Are More Strongly Predicted by Geography Than by Ecology. The American Naturalist, 195(2), 192–200.
+
+Roesti, M., Gilbert, K. J., & Samuk, K. (2022). Chromosomal inversions can limit adaptation to new environments. Molecular Ecology, 31(17), 4435–4439.
 
 Samuk, K. (2016). Commentary: Inversions and the origin of behavioral differences in cod. Molecular Ecology, 25(10), 2111–2113.
 
