@@ -13,9 +13,9 @@
   border: 0px solid #ddd;
   font-weight: 300;
   border-radius: 6px;
-  -webkit-box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);
-  -moz-box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);
-  box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);
+  /*-webkit-box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);*/
+  /*-moz-box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);*/
+  /*box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);*/
   overflow: visible;
 }
 
