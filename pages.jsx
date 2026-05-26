@@ -124,15 +124,28 @@ function ResearchPage({ onNavigate }) {
 // ----------------------------------------------------------------
 function PeoplePage({ onNavigate }) {
   const [data, setData] = usePagesState(null);
+  const [loadError, setLoadError] = usePagesState(false);
   usePagesEffect(() => {
     fetch('data/people.json')
-      .then(r => r.json())
-      .then(setData)
-      .catch(() => setData({ current: [], past: [] }));
+      .then(r => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(d => setData({
+        current: Array.isArray(d?.current) ? d.current : [],
+        past:    Array.isArray(d?.past)    ? d.past    : [],
+      }))
+      .catch(() => { setLoadError(true); setData({ current: [], past: [] }); });
   }, []);
 
-  const resolvePortrait = (p) =>
-    p.startsWith('../') ? `${ASSETS}/images/${p.slice(3)}` : `${ASSETS}/images/people/${p}`;
+  const resolvePortrait = (p) => {
+    if (!p) return `${ASSETS}/images/profile_empty.png`;
+    return p.startsWith('../')
+      ? `${ASSETS}/images/${p.slice(3)}`
+      : `${ASSETS}/images/people/${p}`;
+  };
+
+  const pi = data?.current?.[0];
 
   return (
     <>
@@ -142,44 +155,56 @@ function PeoplePage({ onNavigate }) {
           <div className="container">
             {!data ? (
               <div style={{ textAlign: 'center', padding: 60, color: '#7b7b7b' }}>Loading lab members…</div>
+            ) : loadError ? (
+              <div style={{ textAlign: 'center', padding: 60, color: '#7b7b7b' }}>
+                Could not load lab members. Please try again later.
+              </div>
             ) : (
               <>
-                {data.current.length > 0 && (
+                {pi && (
                   <PiCard
-                    portrait={resolvePortrait(data.current[0].portrait)}
-                    name={data.current[0].name}
-                    title={data.current[0].title}
-                    bioHtml={data.current[0].bio_html}
-                    socials={data.current[0].socials}
+                    portrait={resolvePortrait(pi.portrait)}
+                    name={pi.name}
+                    title={pi.title}
+                    bioHtml={pi.bio_html}
+                    socials={pi.socials || []}
                   />
                 )}
 
-                <h6 className="eyebrow">Current Lab Members</h6>
-                <div className="profile-grid">
-                  {data.current.slice(1).map(m => (
-                    <ProfileCard
-                      key={m.id}
-                      portrait={resolvePortrait(m.portrait)}
-                      name={m.name}
-                      title={m.title}
-                      bioHtml={m.bio_html}
-                      socials={m.socials || []}
-                    />
-                  ))}
-                </div>
+                {data.current.length > 1 && (
+                  <>
+                    <h6 className="eyebrow">Current Lab Members</h6>
+                    <div className="profile-grid">
+                      {data.current.slice(1).map(m => (
+                        <ProfileCard
+                          key={m.id}
+                          portrait={resolvePortrait(m.portrait)}
+                          name={m.name}
+                          title={m.title}
+                          bioHtml={m.bio_html}
+                          socials={m.socials || []}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
 
-                <div className="spacer-lg" />
-                <h6 className="eyebrow">Past Lab Members</h6>
-                <div className="profile-grid past">
-                  {data.past.map(m => (
-                    <ProfileCard
-                      key={m.id} past
-                      portrait={resolvePortrait(m.portrait)}
-                      name={m.name}
-                      title={m.title}
-                    />
-                  ))}
-                </div>
+                {data.past.length > 0 && (
+                  <>
+                    <div className="spacer-lg" />
+                    <h6 className="eyebrow">Past Lab Members</h6>
+                    <div className="profile-grid past">
+                      {data.past.map(m => (
+                        <ProfileCard
+                          key={m.id} past
+                          portrait={resolvePortrait(m.portrait)}
+                          name={m.name}
+                          title={m.title}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>

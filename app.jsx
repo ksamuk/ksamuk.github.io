@@ -15,16 +15,18 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
+  const VALID_PAGES = ['home', 'research', 'people', 'publications', 'join', 'software', 'contact'];
+
   // hash-based routing
   const [page, setPage] = useAppState(() => {
     const h = (window.location.hash || '').replace('#', '');
-    return h && PAGES[h] ? h : 'home';
+    return h && VALID_PAGES.includes(h) ? h : 'home';
   });
 
   useAppEffect(() => {
     const onHash = () => {
       const h = (window.location.hash || '').replace('#', '');
-      const next = h && PAGES[h] ? h : 'home';
+      const next = h && VALID_PAGES.includes(h) ? h : 'home';
       setPage(next);
       window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     };
