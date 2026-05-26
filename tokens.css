@@ -1,0 +1,235 @@
+/* =============================================================
+   Samuk Lab — Color & Type Tokens
+   Source: ksamuk.github.io (css/style.css, css/people.css, css/custom.css)
+   ============================================================= */
+
+/* ---- Google Fonts (the lab's actual webfont stack) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* =============================================================
+   COLOR TOKENS
+   ============================================================= */
+:root {
+
+  /* ---- Brand / accent ---- */
+  --sl-cyan:           #28bbf8;  /* signature lab cyan — links, buttons, accents, dots, selections */
+  --sl-cyan-hover:     #0576a3;  /* darker cyan for link :hover/:focus */
+  --sl-cyan-soft:      #e8f7fe;  /* faint cyan tint (derived, used in preview cards) */
+
+  /* ---- Foreground (text) ---- */
+  --sl-fg-1:           #2e2e2e;  /* primary body text — used everywhere copy lives */
+  --sl-fg-2:           #7b7b7b;  /* secondary text, uppercase eyebrow headings */
+  --sl-fg-3:           #999999;  /* tertiary text, footer captions, muted */
+  --sl-fg-on-accent:   #ffffff;  /* text on cyan / dark backgrounds */
+
+  /* ---- Backgrounds / surfaces ---- */
+  --sl-bg:             #ffffff;  /* page surface */
+  --sl-bg-soft:        #f6f9fa;  /* "About the lab" feature band — pale blue-grey */
+  --sl-bg-dark:        #181920;  /* mobile menu drawer / dark fills */
+  --sl-bg-hero:        #2e2e2e;  /* hero background-color fallback behind imagery */
+
+  /* ---- Borders & dividers ---- */
+  --sl-border:         #eaeaea;  /* outline buttons, faint dividers */
+  --sl-border-soft:    rgba(0, 0, 0, 0.08);   /* footer top border */
+  --sl-border-strong:  #282e3c;  /* outline-button :hover fill */
+  --sl-divider:        rgba(0, 0, 0, 0.1);    /* publication card hr */
+
+  /* ---- Semantic (Bootstrap-derived utility colors used in the site) ---- */
+  --sl-success:        #00e195;
+  --sl-info:           #0bbff2;
+  --sl-warning:        #ffd042;
+  --sl-danger:         #e02745;
+
+  /* ---- Selection ---- */
+  --sl-selection-bg:   #28bbf8;
+  --sl-selection-fg:   #ffffff;
+
+  /* =============================================================
+     TYPE TOKENS
+     ============================================================= */
+
+  /* ---- Families ---- */
+  --sl-sans:           'Lato', arial, sans-serif;             /* body, UI, headings */
+  --sl-serif:          'Crimson Text', Georgia, serif;        /* feature/lead statements */
+
+  /* ---- Weights ----
+     Lato is loaded at 100/300/400/700. The site overwhelmingly uses 300. */
+  --sl-fw-thin:        100;
+  --sl-fw-light:       300;
+  --sl-fw-regular:     400;
+  --sl-fw-bold:        700;
+
+  /* ---- Size scale ---- */
+  --sl-fs-xs:    12px;
+  --sl-fs-sm:    14px;
+  --sl-fs-base:  18px;  /* body — 16 on mobile, 18 default, 20 ≥1200 */
+  --sl-fs-md:    22px;  /* button copy ≥1200 */
+  --sl-fs-lg:    30px;  /* h1 mobile */
+  --sl-fs-xl:    36px;  /* hero h1 desktop */
+  --sl-fs-2xl:   40px;  /* fh5co-lead */
+  --sl-fs-3xl:   45px;  /* section heading */
+  --sl-fs-display: 70px;/* pricing-style display digits */
+
+  --sl-lh-tight:  1.2;
+  --sl-lh-snug:   1.4;
+  --sl-lh-base:   1.5;   /* body */
+  --sl-lh-relaxed: 1.625;
+
+  /* ---- Letter-spacing — the site loves uppercase tracking ---- */
+  --sl-tracking-tight:    0;
+  --sl-tracking-snug:     1px;
+  --sl-tracking-wide:     2px;   /* buttons */
+  --sl-tracking-wider:    3px;   /* eyebrow headings, hero subtitle */
+  --sl-tracking-widest:   4px;   /* hero kicker */
+
+  /* =============================================================
+     SHAPE & ELEVATION
+     ============================================================= */
+  --sl-radius-sm:      4px;    /* publication panel */
+  --sl-radius-md:      6px;    /* cards */
+  --sl-radius-lg:      10px;   /* nav pills */
+  --sl-radius-xl:      30px;   /* buttons */
+  --sl-radius-circle:  50%;
+
+  --sl-shadow-sm:      0 0.125em 0.125em 0 rgba(0, 0, 0, 0.225);     /* feature icons, scrolled nav, news image */
+  --sl-shadow-card:    0px 0px 12px 4px rgba(0, 0, 0, 0.08);          /* job-card, pub-card, contact-card */
+  --sl-shadow-card-lg: 0px 0px 12px 6px rgba(0, 0, 0, 0.10);          /* research card-img */
+  --sl-shadow-portrait:0px 0px 8px 4px rgba(0, 0, 0, 0.12);           /* profile portrait circle */
+  --sl-drop-hex:       drop-shadow(3px 3px 3px #666);                 /* hex-img */
+
+  /* =============================================================
+     SPACING (extracted from .fh5co-spacer-* helpers + paddings)
+     ============================================================= */
+  --sl-space-xxs:  20px;
+  --sl-space-xs:   30px;
+  --sl-space-sm:   50px;
+  --sl-space-md:   80px;
+  --sl-space-lg:   3em;     /* ≈48px */
+  --sl-space-xlg: 150px;
+
+  /* Layout */
+  --sl-header-h:      88px;
+  --sl-hero-h-home:  600px;
+  --sl-hero-h-inner: 400px;
+
+  /* Motion */
+  --sl-ease:       ease;
+  --sl-dur-fast:   0.2s;
+  --sl-dur-base:   0.3s;
+  --sl-dur-slow:   0.5s;
+}
+
+/* =============================================================
+   SEMANTIC TYPE RULES — apply consistently
+   ============================================================= */
+
+body {
+  font-family: var(--sl-sans);
+  font-size: var(--sl-fs-base);
+  font-weight: var(--sl-fw-light);
+  line-height: var(--sl-lh-base);
+  color: var(--sl-fg-1);
+  background: var(--sl-bg);
+}
+
+::selection { color: var(--sl-selection-fg); background: var(--sl-selection-bg); }
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+/* Hero h1 — uppercase, tracked, tall */
+.sl-display, h1.sl-display {
+  font-family: var(--sl-sans);
+  font-weight: var(--sl-fw-regular);
+  font-size: var(--sl-fs-xl);
+  letter-spacing: var(--sl-tracking-wider);
+  text-transform: uppercase;
+  color: var(--sl-fg-on-accent);
+}
+
+/* Hero kicker — uppercase, tracked-widest, under a 3px white bar */
+.sl-eyebrow-hero {
+  font-size: 16px;
+  letter-spacing: var(--sl-tracking-widest);
+  text-transform: uppercase;
+  color: #fff;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+/* Section eyebrow — the signature small grey uppercase heading */
+.sl-eyebrow {
+  font-size: var(--sl-fs-sm);
+  line-height: 26px;
+  text-transform: uppercase;
+  letter-spacing: var(--sl-tracking-wider);
+  color: var(--sl-fg-2);
+  font-weight: var(--sl-fw-light);
+}
+
+/* Big section heading (rarely used; mostly visible on inner pages titles) */
+.sl-heading {
+  font-family: var(--sl-sans);
+  font-weight: var(--sl-fw-bold);
+  font-size: var(--sl-fs-3xl);
+  line-height: 57px;
+}
+
+/* Feature title — uppercase, tracked */
+.sl-feature-title {
+  font-size: 18px;
+  font-weight: var(--sl-fw-bold);
+  letter-spacing: var(--sl-tracking-wide);
+  text-transform: uppercase;
+}
+
+/* Lead serif statement — the Crimson Text lead used on Join, etc */
+.sl-lead-serif {
+  font-family: var(--sl-serif);
+  font-weight: var(--sl-fw-regular);
+  font-size: var(--sl-fs-2xl);
+  line-height: 52px;
+}
+
+/* Body paragraph */
+.sl-body {
+  font-family: var(--sl-sans);
+  font-weight: var(--sl-fw-light);
+  font-size: var(--sl-fs-base);
+  line-height: var(--sl-lh-base);
+  color: var(--sl-fg-1);
+}
+
+/* Caption / footer note */
+.sl-caption {
+  font-size: var(--sl-fs-xs);
+  color: var(--sl-fg-3);
+}
+
+/* Profile name — uppercase, tracked-wide */
+.sl-profile-name {
+  font-size: 18px;
+  letter-spacing: var(--sl-tracking-wide);
+  text-transform: uppercase;
+  font-weight: var(--sl-fw-bold);
+}
+
+/* Profile title — uppercase, tracked-wider, lighter */
+.sl-profile-title {
+  font-size: var(--sl-fs-sm);
+  letter-spacing: var(--sl-tracking-wider);
+  text-transform: uppercase;
+  font-weight: var(--sl-fw-light);
+  color: var(--sl-fg-2);
+}
+
+/* Inline links */
+a.sl-link {
+  color: var(--sl-cyan);
+  text-decoration: none;
+  transition: all var(--sl-dur-fast) var(--sl-ease);
+  border-bottom: none;
+}
+a.sl-link:hover { color: var(--sl-cyan-hover); }

@@ -1,0 +1,139 @@
+{
+  "current": [
+    {
+      "id": "k_samuk",
+      "portrait": "k_samuk2.jpeg",
+      "name": "Dr. Kieran Samuk",
+      "title": "Principal Investigator",
+      "bio_html": "Kieran is an Assistant Professor in the <a href=\"https://eeob.ucr.edu/\" target=\"_blank\" rel=\"noreferrer\">EEOB Department</a> at UC Riverside. He is primarily interested in evolutionary genetics, particularly the interaction between recombination and the forces of evolution.",
+      "socials": [
+        { "kind": "email",   "href": "mailto:ksamuk@ucr.edu",                                           "title": "Email" },
+        { "kind": "cv",      "href": "https://www.samuklab.com/files/cv/samuk_cv.pdf",                 "title": "Download CV" },
+        { "kind": "scholar", "href": "https://scholar.google.com/citations?user=6SUFQxQAAAAJ&hl=en",   "title": "Google Scholar" },
+        { "kind": "twitter", "href": "https://twitter.com/ksamuk",                                      "title": "Twitter" },
+        { "kind": "github",  "href": "https://github.com/ksamuk",                                       "title": "GitHub" }
+      ]
+    },
+    {
+      "id": "m_akopyan",
+      "portrait": "m_akopyan.jpg",
+      "name": "Dr. Maria Akopyan",
+      "title": "Postdoc, 2025 – Present",
+      "bio_html": "Maria is an NSF PRFB postdoc co-advised by <a href=\"https://www.armstrong-lab.com/people\" target=\"_blank\" rel=\"noreferrer\">Dr. Ellie Armstrong</a>. She applies genomic resources to reconstruct demographic histories, characterize recombination landscapes and structural variation, and investigate the genomic architecture of adaptation.",
+      "socials": [
+        { "kind": "email",   "href": "mailto:ma2256@cornell.edu",                                      "title": "Email" },
+        { "kind": "cv",      "href": "https://www.samuklab.com/files/cv/akopyan_cv.pdf",               "title": "Download CV" },
+        { "kind": "scholar", "href": "https://scholar.google.com/citations?user=6u8oHgYAAAAJ&hl=en",   "title": "Google Scholar" }
+      ]
+    },
+    {
+      "id": "n_riverarincon",
+      "portrait": "n_riverarincon.jpg",
+      "name": "Dr. Natalia Rivera-Rincon",
+      "title": "Postdoc, 2025 – Present",
+      "bio_html": "Natalia is interested in how recombination and chromosomal inversions shape genome architecture and facilitate adaptation. She is particularly fascinated by the role of structural variation in mediating responses to environmental change and climatic gradients.",
+      "socials": [
+        { "kind": "email",   "href": "mailto:nriverar@ucr.edu",                                        "title": "Email" },
+        { "kind": "cv",      "href": "https://www.samuklab.com/files/cv/rivera_cv.pdf",                "title": "Download CV" },
+        { "kind": "scholar", "href": "https://scholar.google.com/citations?user=93mVv_0AAAAJ&hl=en",   "title": "Google Scholar" },
+        { "kind": "twitter", "href": "https://x.com/natbio12",                                          "title": "Twitter" },
+        { "kind": "github",  "href": "https://github.com/natbio12",                                     "title": "GitHub" }
+      ]
+    },
+    {
+      "id": "g_lucas",
+      "portrait": "g_lucas2.jpg",
+      "name": "Gina Lucas",
+      "title": "PhD Student, 2022 – Present",
+      "bio_html": "Gina is interested in evolutionary biology and comparative genomics. Her current project is focused on experimental evolution of chromosomal inversions.",
+      "socials": [
+        { "kind": "email",    "href": "mailto:gluca001@ucr.edu",                                       "title": "Email" },
+        { "kind": "cv",       "href": "https://www.samuklab.com/files/cv/lucas_cv.pdf",                "title": "Download CV" },
+        { "kind": "twitter",  "href": "https://twitter.com/gene_lucas_",                                "title": "Twitter" },
+        { "kind": "linkedin", "href": "https://www.linkedin.com/in/gina-lucas-4b657b172/",             "title": "LinkedIn" }
+      ]
+    },
+    {
+      "id": "a_sumarli",
+      "portrait": "a_sumarli2.jpg",
+      "name": "Alexandra Sumarli",
+      "title": "PhD Student, 2022 – Present",
+      "bio_html": "Prior to joining the lab, Alex worked at the USGS and completed an MSc at SDSU working on the phylogenomics of chuckwallas.",
+      "socials": [
+        { "kind": "email",   "href": "mailto:asuma001@ucr.edu",                                        "title": "Email" },
+        { "kind": "cv",      "href": "https://www.samuklab.com/files/cv/sumarli_cv.pdf",               "title": "Download CV" },
+        { "kind": "scholar", "href": "https://scholar.google.com/citations?user=k3rtGbkAAAAJ&hl=en",   "title": "Google Scholar" },
+        { "kind": "twitter", "href": "https://twitter.com/ASumarli",                                    "title": "Twitter" }
+      ]
+    },
+    {
+      "id": "m_plaza",
+      "portrait": "m_plaza.png",
+      "name": "Mikhail Plaza",
+      "title": "PhD Student, 2023 – Present",
+      "bio_html": "Mikhail is interested in genome evolution and its applications in plant breeding and adaptation. Before joining the lab, he earned an MSc from CSUN.",
+      "socials": [
+        { "kind": "email", "href": "mailto:mplaz002@ucr.edu", "title": "Email" }
+      ]
+    },
+    {
+      "id": "r_fordespinoza",
+      "portrait": "r_fordespinoza.jpg",
+      "name": "Rachel Ford-Espinoza",
+      "title": "Undergraduate, 2024 – Present",
+      "bio_html": "Rachel is a fourth-year undergraduate pursuing a degree in biology. She is assisting in the stickleback and fruit fly research in the lab.",
+      "socials": []
+    },
+    {
+      "id": "l_tran",
+      "portrait": "l_tran1.jpeg",
+      "name": "Ly Tran",
+      "title": "Undergraduate, 2024 – Present",
+      "bio_html": "Ly (they/any) is an undergraduate in the Neuroscience program at UCR. They are a NIH MARC-U Scholar. Their project is focused on understanding the genetic basis of albinism in threespine sticklebacks.",
+      "socials": []
+    },
+    {
+      "id": "a_sesani",
+      "portrait": "a_sesani1.jpg",
+      "name": "Adithi Sesani",
+      "title": "Undergraduate, 2024 – Present",
+      "bio_html": "Adithi is an undergraduate in the Neuroscience program at UCR. She is currently working on recombination rate variation in natural populations of <i>Arabidopsis</i>.",
+      "socials": []
+    },
+    {
+      "id": "e_tran",
+      "portrait": "e_tran.jpg",
+      "name": "Emme Tran",
+      "title": "Undergraduate, 2025 – Present",
+      "bio_html": "Emme is an undergraduate in the Neuroscience program at UCR. She is assisting in projects related to the threespine stickleback.",
+      "socials": []
+    },
+    {
+      "id": "k_mondragon",
+      "portrait": "k_mondragon.jpg",
+      "name": "Kimberly Mondragon-Arroyo",
+      "title": "Undergraduate, 2025 – Present",
+      "bio_html": "Kimberly is an undergraduate in the Biology program at UCR. She is assisting with research focused on the three-spine stickleback.",
+      "socials": []
+    },
+    {
+      "id": "j_daluraya",
+      "portrait": "../profile_empty.png",
+      "name": "James Daluraya",
+      "title": "Undergraduate, 2025 – Present",
+      "bio_html": "James is an undergraduate in the Biology program at UCR. He is working on recombination rate variation in natural populations of <i>Arabidopsis</i>.",
+      "socials": []
+    }
+  ],
+  "past": [
+    { "id": "n_cecilio",     "portrait": "n_cecilio.jpg",        "name": "Noah Cecilio",          "title": "Undergraduate, 2023 – 2025",         "bio_html": "", "socials": [] },
+    { "id": "luca_lin",      "portrait": "../profile_empty.png", "name": "Luca Lin",              "title": "Undergraduate, 2024 – 2025",         "bio_html": "", "socials": [] },
+    { "id": "j_lopez",       "portrait": "../profile_empty.png", "name": "Jacquelyn Lopez",       "title": "Undergraduate, RISE 2024",            "bio_html": "", "socials": [] },
+    { "id": "m_wanjiku",     "portrait": "m_wanjiku.jpg",        "name": "Margaret Wanjiku",      "title": "SDSU Joint PhD, 2023 – 2024",         "bio_html": "", "socials": [] },
+    { "id": "j_eusebio",     "portrait": "j_eusebio.jpg",        "name": "Jericho Eusebio",       "title": "Lab Technician, 2023 – 2025",         "bio_html": "", "socials": [] },
+    { "id": "r_patel",       "portrait": "r_patel.jpg",          "name": "Rajeet Patel",          "title": "Undergraduate, 2021 – 2025",          "bio_html": "", "socials": [] },
+    { "id": "p_goulart",     "portrait": "p_goulart.jpg",        "name": "Paimon Goulart",        "title": "Undergraduate, 2022 – 2025",          "bio_html": "", "socials": [] },
+    { "id": "r_quinonez",    "portrait": "r_quinonez.jpg",       "name": "Reyna Quiñonez",        "title": "Undergraduate, 2022 – 2025",          "bio_html": "", "socials": [] },
+    { "id": "b_clement",     "portrait": "b_clement.jpg",        "name": "Bella Clement",         "title": "Undergraduate, 2022 – 2023",          "bio_html": "", "socials": [] }
+  ]
+}
