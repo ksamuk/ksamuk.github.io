@@ -45,7 +45,7 @@
       "portrait": "g_lucas2.jpg",
       "name": "Gina Lucas",
       "title": "PhD Student, 2022 – Present",
-      "bio_html": "Gina is interested in evolutionary biology and comparative genomics. Her current project is focused on experimental evolution of chromosomal inversions.",
+      "bio_html": "Gina is interested in evolutionary genetics and genomics. Her current project is focused on understanding the role of gene flow in shaping adaptation and diversity in natural populations.",
       "socials": [
         { "kind": "email",    "href": "mailto:gluca001@ucr.edu",                                       "title": "Email" },
         { "kind": "cv",       "href": "https://www.samuklab.com/files/cv/lucas_cv.pdf",                "title": "Download CV" },
@@ -89,7 +89,7 @@
       "portrait": "l_tran1.jpeg",
       "name": "Ly Tran",
       "title": "Undergraduate, 2024 – Present",
-      "bio_html": "Ly (they/any) is an undergraduate in the Neuroscience program at UCR. They are a NIH MARC-U Scholar. Their project is focused on understanding the genetic basis of albinism in threespine sticklebacks.",
+      "bio_html": "Ly (they/any) is an undergraduate in the Neuroscience program at UCR, and is broadly interested in evolutionary biology. They are a NIH MARC-U Scholar. Their project is focused on understanding the genetic basis of albinism in threespine sticklebacks.",
       "socials": []
     },
     {
