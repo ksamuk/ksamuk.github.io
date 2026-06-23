@@ -264,7 +264,7 @@ function ProfileCard({ portrait, name, title, bioHtml, socials = [], past = fals
       <img className="profile-portrait" src={portrait} alt={name} />
       <div className="profile-name">{name}</div>
       <div className="profile-title">{title}</div>
-      {!past && bioHtml ? <p className="profile-bio" dangerouslySetInnerHTML={{ __html: bioHtml }}>Alex is interested in speciation and phylogenetics, and her thesis is focused on exploring how the processes of recombination and speciation interact in threespine sticklebacks.</p> : null}
+      {!past && bioHtml ? <p className="profile-bio" dangerouslySetInnerHTML={{ __html: bioHtml }} /> : null}
       {!past && socials.length > 0 ?
       <div className="profile-socials">
           {socials.map((s, i) => <SocialIcon key={i} {...s} />)}
