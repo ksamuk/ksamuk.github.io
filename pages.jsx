@@ -406,6 +406,19 @@ function SoftwarePage({ onNavigate }) {
                 <li><a href="https://www.samuklab.com/syntR/articles/syntr_tutorial.html" target="_blank" rel="noreferrer"><i className="fas fa-book"></i> Tutorial</a></li>
               </ul>
             </SoftwareCard>
+
+            <SoftwareCard
+              logo={`${ASSETS}/images/wisp_logo.png`}
+              name="wisp"
+              tagline="Population count masks from BAM/CRAM alignments or all-sites VCFs"
+            >
+              <p>
+                <b>wisp</b> builds population count masks from BAM/CRAM alignments or all-sites VCFs. It is a companion tool for <b>pixy</b>, letting you correctly compute the denominators of π, d<sub>xy</sub>, Watterson's θ, and Tajima's D when working from a variants-only VCF — callable sites are counted per population rather than collapsed into a single cohort-wide pass/fail.
+              </p>
+              <ul className="software-links">
+                <li><a href="https://github.com/samuk-lab/wisp" target="_blank" rel="noreferrer"><i className="fab fa-github"></i> GitHub</a></li>
+              </ul>
+            </SoftwareCard>
           </div>
         </section>
         <Footer onNavigate={onNavigate} />

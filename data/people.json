@@ -29,7 +29,7 @@
     {
       "id": "n_riverarincon",
       "portrait": "n_riverarincon.jpg",
-      "name": "Dr. Natalia Rivera-Rincon",
+      "name": "Dr. Natalia Rivera-Rincón",
       "title": "Postdoc, 2025 – Present",
       "bio_html": "Natalia is interested in how recombination and chromosomal inversions shape genome architecture and facilitate adaptation. She is particularly fascinated by the role of structural variation in mediating responses to environmental change and climatic gradients.",
       "socials": [
@@ -122,6 +122,14 @@
       "name": "James Daluraya",
       "title": "Undergraduate, 2025 – Present",
       "bio_html": "James is an undergraduate in the Biology program at UCR. He is working on recombination rate variation in natural populations of <i>Arabidopsis</i>.",
+      "socials": []
+    },
+    {
+      "id": "a_bellum",
+      "portrait": "a_bellum.png",
+      "name": "Anoushka Bellum",
+      "title": "Undergraduate, 2026 – Present",
+      "bio_html": "Anoushka is a RISE summer student working with Dr. Rivera-Rincón on designing CAPS markers for detecting chromosomal inversion polymorphisms in <i>D. pseudoobscura</i>.",
       "socials": []
     }
   ],

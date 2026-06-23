@@ -195,6 +195,7 @@ img { max-width: 100%; display: block; }
   margin: 0 auto 28px;
   display: inline-flex; align-items: center; gap: 14px;
   line-height: 1.35;
+  font-weight: var(--sl-fw-regular);
 }
 .hero-kicker .kicker-text {
   display: inline-flex;
@@ -206,7 +207,7 @@ img { max-width: 100%; display: block; }
 
 .hero-title {
   font-size: clamp(28px, 4.2vw, 52px);
-  font-weight: var(--sl-fw-light);
+  font-weight: var(--sl-fw-regular);
   letter-spacing: 0.5px;
   line-height: 1.18;
   margin: 0 auto;
@@ -244,7 +245,7 @@ img { max-width: 100%; display: block; }
 
 .hero-inner-title {
   font-size: clamp(48px, 7vw, 88px);
-  font-weight: var(--sl-fw-thin);
+  font-weight: var(--sl-fw-regular);
   letter-spacing: 4px;
   text-transform: uppercase;
   margin: 0;
@@ -253,10 +254,10 @@ img { max-width: 100%; display: block; }
 .hero-inner-sub {
   margin-top: 22px;
   font-size: 14px;
+  font-weight: var(--sl-fw-regular);
   letter-spacing: 3px;
   text-transform: uppercase;
   color: rgba(255,255,255,0.78);
-  font-weight: var(--sl-fw-light);
 }
 
 .hero-scroll-hint {
@@ -265,6 +266,7 @@ img { max-width: 100%; display: block; }
   transform: translateX(-50%);
   color: rgba(255,255,255,0.7);
   font-size: 11px;
+  font-weight: var(--sl-fw-regular);
   letter-spacing: 3px;
   text-transform: uppercase;
   z-index: 2;
