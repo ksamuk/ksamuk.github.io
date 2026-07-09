@@ -145,7 +145,7 @@
   html[data-theme="kawaii"] table.fst th{color:#fff; background:var(--accent-soft)}
   html[data-theme="kawaii"] #chartwrap{border:3px solid var(--edge); box-shadow:0 6px 0 #ffdcec, inset 0 0 0 5px #fff}
   html[data-theme="kawaii"] .legend .swatch{border-radius:4px}
-  html[data-theme="kawaii"] #stats b{color:var(--accent)}
+  html[data-theme="kawaii"] #stats td.val{color:var(--accent)}
 
   /* ===================== THEME: Disorder ===================== *
    * Stark monochrome — Unknown Pleasures / darkwave-streetwear: pure black, white ink,
@@ -194,8 +194,8 @@
   html[data-theme="disorder"] #chartwrap{background:#000; border:1px solid #4a4a4a}
   html[data-theme="disorder"] .facet-title{fill:#fff; font-family:'Fyodor',var(--serif)}  /* white (else invisible on dark) + Fyodor display face */
   html[data-theme="disorder"] .axis-label{font-family:'Fyodor',var(--serif)}   /* Fyodor display face on the axis titles */
-  html[data-theme="disorder"] #stats .lbl,
-  html[data-theme="disorder"] #stats .val{font-family:'Fyodor',var(--serif)}   /* …and on the stat-tile labels + values */
+  html[data-theme="disorder"] #stats th,
+  html[data-theme="disorder"] #stats td{font-family:'Fyodor',var(--serif)}   /* …and on the stat-table labels + values */
   html[data-theme="disorder"] table.fst th{color:#fff}
   /* lighten the unchecked toggle boxes: transparent-on-near-black reads too faint, so give the
      empty box a mid-grey fill (checked state still fills the whole pill white, so this only shows when off) */
@@ -346,13 +346,26 @@
     width:16px; height:16px; border:1.6px solid currentColor; border-radius:5px; background:transparent}
   #plotopts input[type=checkbox]:checked::after, .chkrow input[type=checkbox]:checked::after{
     content:'✓'; position:absolute; inset:-1px; display:flex; align-items:center; justify-content:center;
-    font-size:12px; font-weight:800; line-height:1; color:currentColor}
+    font-size:12px; font-weight:800; line-height:1; color:var(--panel)}
   #plotopts input[type=checkbox]:disabled, .chkrow input[type=checkbox]:disabled{cursor:not-allowed}
+  /* Xerox: the ticked pill fills with black, so give the (transparent) check-square a white border
+     to stay visible — a white outlined box with the white tick on the black pill */
+  html[data-theme="xerox"] #plotopts input[type=checkbox]:checked,
+  html[data-theme="xerox"] .chkrow input[type=checkbox]:checked{border-color:var(--panel)}
+  /* One plot / Multiple plots: a segmented control (reuses the migration .seg) — two options in one
+     pill, the active one filled with --accent. Its button padding matches the option pills so it's the
+     same height. Driven by the hidden #opt-separate checkbox (share / draw / disable logic unchanged). */
+  #plotopts .swseg{margin:0; align-self:center; align-items:center}
+  /* content-width segments (override the global button flex:1, whose flex-basis:0 forced both
+     segments to equal width and let the longer "Multiple plots" label overflow its accent fill in
+     wider-font themes) — so each label stays centred in its own segment in every theme */
+  #plotopts .swseg button{flex:0 0 auto; min-width:0; padding:3px 12px; font-size:14px; line-height:1.6; white-space:nowrap}
+  #plotopts .swseg.is-disabled{opacity:.45; pointer-events:none}
   /* segmented toggle (migration model): two options in one pill; the active one fills with
      the theme accent. Same visual language as the toggle-pills; themes via the CSS vars. */
   .seg{display:inline-flex; padding:3px; gap:3px; margin-bottom:14px; border:1px solid var(--edge);
     border-radius:999px; background:var(--panel2); -webkit-user-select:none; user-select:none}
-  .seg button{appearance:none; -webkit-appearance:none; border:none; cursor:pointer; margin:0;
+  .seg button{appearance:none; -webkit-appearance:none; border:none; box-shadow:none; cursor:pointer; margin:0;
     font-family:var(--body); font-size:13px; color:var(--ink); background:transparent;
     padding:6px 14px; border-radius:999px; transition:background .15s, color .15s}
   .seg button[aria-pressed="true"]{background:var(--accent); color:var(--panel)}
@@ -364,11 +377,20 @@
   /* stat tiles: label above a big value, auto-fitting grid that reflows to fewer columns as width shrinks.
      Every size is multiplied by --sz (default 1), a zoom-responsive scale set in JS: on browser zoom-in
      the tiles shrink so the flex:1 plot reclaims the space instead of the fixed-size grid eating it. */
-  .statgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(calc(132px*var(--sz,1)),1fr)); gap:calc(10px*var(--sz,1))}
-  .statgrid .stat{display:flex; flex-direction:column; gap:3px; padding:calc(9px*var(--sz,1)) calc(12px*var(--sz,1));
-    background:var(--panel2); border:var(--group-border); border-radius:var(--radius-md)}
-  .statgrid .lbl{font-size:calc(11px*var(--sz,1)); text-transform:uppercase; letter-spacing:.05em; color:var(--muted); line-height:1.2}
-  .statgrid .val{font-size:calc(19px*var(--sz,1)); font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums; line-height:1.15}
+  /* Summary scalars as two side-by-side tables (run summary + diversity/F_ST). --sz keeps the
+     zoom-responsive shrink from the old tile grid. */
+  #stats{display:flex; flex-wrap:wrap; gap:calc(14px*var(--sz,1)); align-items:flex-start}
+  table.stattable{flex:1 1 240px; border-collapse:collapse; width:auto;
+    background:var(--panel2); border:var(--group-border); border-radius:var(--radius-md); overflow:hidden}
+  table.stattable thead th{text-align:left; font-size:calc(11px*var(--sz,1)); text-transform:uppercase;
+    letter-spacing:.05em; color:var(--muted); font-weight:600; line-height:1.2;
+    padding:calc(9px*var(--sz,1)) calc(12px*var(--sz,1)) calc(5px*var(--sz,1))}
+  table.stattable th{text-align:left; font-weight:400; color:var(--muted); line-height:1.2;
+    font-size:calc(13px*var(--sz,1)); padding:calc(6px*var(--sz,1)) calc(12px*var(--sz,1))}
+  table.stattable td.val{text-align:right; font-size:calc(17px*var(--sz,1)); font-weight:600; color:var(--ink);
+    font-variant-numeric:tabular-nums; line-height:1.15; white-space:nowrap;
+    padding:calc(6px*var(--sz,1)) calc(12px*var(--sz,1))}
+  table.stattable tbody tr+tr th, table.stattable tbody tr+tr td{border-top:1px solid var(--edge)}
   #fstwrap{margin-top:12px}
   #fstwrap .cap{font-size:13px; color:var(--muted); font-style:italic; margin-bottom:6px}
   table.fst{border-collapse:collapse; font-size:12.5px; font-variant-numeric:tabular-nums}
@@ -408,7 +430,7 @@
   .axis-label{fill:var(--ink); font-family:var(--serif); font-size:14px; font-weight:600}
   .facet-title{font-family:var(--serif); font-size:13px; font-weight:600}
   .grid line{stroke:var(--grid)}
-  #stats.statgrid{margin-top:16px}
+  #stats{margin-top:16px}
   .legend{display:flex; gap:20px; align-items:center; margin-top:10px; font-size:13px; font-style:italic; color:var(--muted)}
   .legend .swatch{display:inline-block; width:24px; height:0; border-top:3px solid; vertical-align:middle; margin-right:7px}
   .migdiagram{margin:4px 0 10px}
@@ -692,10 +714,14 @@
         <option value="fst" data-kw="🗺️">Fₛₜ over generations</option>
       </select>
     </label>
-    <label data-kw="🪟"><input type="checkbox" id="opt-separate"> <span id="opt-separate-lbl">One plot</span></label>
+    <div class="seg swseg" id="sep-model" role="group" aria-label="Plot layout">
+      <button type="button" data-sep="one" aria-pressed="true">One plot</button>
+      <button type="button" data-sep="multi" aria-pressed="false" data-kw="🪟">Multiple plots</button>
+    </div>
+    <input type="checkbox" id="opt-separate" hidden>
     <label data-kw="📈"><input type="checkbox" id="opt-mean" checked> Show mean line</label>
     <label data-kw="📐"><input type="checkbox" id="opt-hwe"> Show HWE expectation</label>
-    <label data-kw="🎬"><input type="checkbox" id="opt-animate" checked> Animate over generations</label>
+    <label data-kw="🎬"><input type="checkbox" id="opt-animate" checked> Animate</label>
     <label data-kw="📍"><input type="checkbox" id="opt-btlline"> Mark bottleneck generation</label>
   </div>
   <div id="chartwrap">
@@ -705,16 +731,26 @@
     <div id="plottip"></div>
   </div>
   <div class="legend" id="legend"></div>
-  <div id="stats" class="statgrid">
-    <div class="stat"><span class="lbl" data-kw="⏳">Generations run</span><b class="val" id="s_gen">0</b></div>
-    <div class="stat"><span class="lbl" data-kw="🎯">Mean p(A)</span><b class="val" id="s_mean">—</b></div>
-    <div class="stat"><span class="lbl" data-kw="✅">Fixed for A</span><b class="val" id="s_fixA">—</b></div>
-    <div class="stat"><span class="lbl" data-kw="💔">Lost A</span><b class="val" id="s_lost">—</b></div>
-    <div class="stat"><span class="lbl" data-kw="🌈">Polymorphic</span><b class="val" id="s_poly">—</b></div>
-    <div class="stat"><span class="lbl">H<sub>e</sub> (expected)</span><b class="val" id="s_He">—</b></div>
-    <div class="stat"><span class="lbl">H<sub>obs</sub> (observed)</span><b class="val" id="s_Hobs">—</b></div>
-    <div class="stat"><span class="lbl">F (F<sub>IS</sub>)</span><b class="val" id="s_F">—</b></div>
-    <div class="stat"><span class="lbl">Overall F<sub>ST</sub></span><b class="val" id="s_FST">—</b></div>
+  <div id="stats">
+    <table class="stattable">
+      <thead><tr><th colspan="2">Run summary</th></tr></thead>
+      <tbody>
+        <tr><th data-kw="⏳">Generations run</th><td class="val" id="s_gen">0</td></tr>
+        <tr><th data-kw="🎯">Mean p(A)</th><td class="val" id="s_mean">—</td></tr>
+        <tr><th data-kw="✅">Fixed for A</th><td class="val" id="s_fixA">—</td></tr>
+        <tr><th data-kw="💔">Lost A</th><td class="val" id="s_lost">—</td></tr>
+        <tr><th data-kw="🌈">Polymorphic</th><td class="val" id="s_poly">—</td></tr>
+      </tbody>
+    </table>
+    <table class="stattable">
+      <thead><tr><th colspan="2">Diversity &amp; differentiation</th></tr></thead>
+      <tbody>
+        <tr><th>H<sub>e</sub> (expected)</th><td class="val" id="s_He">—</td></tr>
+        <tr><th>H<sub>obs</sub> (observed)</th><td class="val" id="s_Hobs">—</td></tr>
+        <tr><th>F (F<sub>IS</sub>)</th><td class="val" id="s_F">—</td></tr>
+        <tr><th>Overall F<sub>ST</sub></th><td class="val" id="s_FST">—</td></tr>
+      </tbody>
+    </table>
   </div>
   <div id="fstwrap"></div>
 </div>
@@ -938,7 +974,7 @@ document.getElementById('btlGens').addEventListener('input', ()=>{
 // grey out the bottleneck timing/size sliders + plot marker when disabled or when N is infinite (no drift)
 function updateBtlUI(){
   const dis = isInfinite() || !document.getElementById('btl-on').checked;
-  for(const id of ['btlGen','btlN']){
+  for(const id of ['btlN0','btlN','btlGens','btlGen']){
     const el=document.getElementById(id);
     el.disabled=dis; el.closest('.row').style.opacity=dis?0.4:1;
   }
@@ -1085,7 +1121,22 @@ const faintCol = c => lineInvert ? darkC(c) : c;
 // frame — a full plot render is the heavy op, and firing it per input event janks the drag.
 let _drawRAF=null;
 function scheduleDraw(){ if(_drawRAF) return; _drawRAF=requestAnimationFrame(()=>{ _drawRAF=null; draw(); }); }
-document.getElementById('demes').addEventListener('input', ()=>{ renderMigDiagram(); renderLegend(); scheduleDraw(); });
+// migration is meaningless with a single population — grey out the m slider + model toggle
+function updateMigUI(){
+  const dis = P.demes<=1;
+  const mEl=document.getElementById('m');
+  mEl.disabled=dis; mEl.closest('.row').style.opacity=dis?0.4:1;
+  const seg=document.getElementById('mig-model');
+  seg.style.opacity=dis?0.4:1; seg.style.pointerEvents=dis?'none':'';
+}
+let _lastDemes = P.demes;
+document.getElementById('demes').addEventListener('input', ()=>{
+  // default to Multiple plots the first time a run becomes multi-population
+  const sep = document.getElementById('opt-separate');
+  if(P.demes>1 && _lastDemes<=1 && !sep.disabled && !sep.checked){ sep.checked=true; updateSeparateLabel(); }
+  _lastDemes = P.demes;
+  updateMigUI(); renderMigDiagram(); renderLegend(); scheduleDraw();
+});
 document.getElementById('m').addEventListener('input', renderMigDiagram);
 // migration-model segmented toggle: set the active segment, swap the hint, redraw the diagram
 const MIG_HINT={
@@ -1097,13 +1148,27 @@ function updateMigModelUI(){
   document.getElementById('migmodel-hint').textContent = island?MIG_HINT.island:MIG_HINT.stepping;
   renderMigDiagram();
 }
-document.querySelectorAll('#mig-model button').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('#mig-model button').forEach(o=>o.setAttribute('aria-pressed', String(o===b)));
+// toggles on a click anywhere in the control (either segment), so it acts like a switch
+document.getElementById('mig-model').addEventListener('click',()=>{
+  document.querySelectorAll('#mig-model button').forEach(o=>o.setAttribute('aria-pressed', String(o.getAttribute('aria-pressed')!=='true')));
   updateMigModelUI();
-}));
+});
 // the "separate" toggle reads either "One plot" (overlaid) or "Multiple plots" (one subplot per
 // quantity — populations for the allele plots, genotypes/heterozygosities for those plots)
-function updateSeparateLabel(){ document.getElementById('opt-separate-lbl').textContent = document.getElementById('opt-separate').checked ? 'Multiple plots' : 'One plot'; }
+// One plot / Multiple plots is a .seg segmented control driven by the hidden #opt-separate checkbox
+// (the checkbox stays the single source of truth for draw/share/disable). updateSeparateLabel mirrors
+// the checkbox state onto the two segment buttons — so share-restore, the demes auto-enable, etc.,
+// which set .checked then call it, all light the right segment.
+function updateSeparateLabel(){
+  const multi = document.getElementById('opt-separate').checked;
+  document.querySelectorAll('#sep-model button').forEach(b=>
+    b.setAttribute('aria-pressed', String((b.dataset.sep==='multi')===multi)));
+}
+// toggles on a click anywhere in the control (either segment), so it acts like a switch
+document.getElementById('sep-model').addEventListener('click',()=>{
+  if(document.getElementById('opt-separate').disabled) return;
+  const cb=document.getElementById('opt-separate'); cb.checked=!cb.checked; cb.dispatchEvent(new Event('change'));
+});
 document.getElementById('opt-separate').addEventListener('change', ()=>{ updateSeparateLabel(); renderLegend(); draw(); });
 document.getElementById('opt-mean').addEventListener('change', ()=>{ renderLegend(); draw(); });
 document.getElementById('opt-hwe').addEventListener('change', ()=>{ renderLegend(); draw(); });
@@ -1768,7 +1833,7 @@ function commitHover(key){
 // HOVER_DELAY so a quick pass over the plot doesn't flash. Swapping between two lines while already
 // dimmed is applied immediately — the plate stays dimmed, so there's nothing to flash.
 const HOVER_DELAY = 180;
-const HOVER_DIM = false;   // master switch for the hover-isolation dimming (tooltip is unaffected)
+const HOVER_DIM = true;    // master switch for the hover-isolation dimming (tooltip is unaffected)
 function clearHoverTimer(){ if(hoverTimer){ clearTimeout(hoverTimer); hoverTimer=null; } pendingKey=null; }
 function onHover(key){
   if(!HOVER_DIM) return;   // dimming disabled — leave the machinery wired but dormant
@@ -1926,15 +1991,22 @@ function renderStatsPanel(){
 // island: circles on a ring with a line between every pair (fully connected).
 function renderMigDiagram(){
   const n=P.demes, m=P.m, host=document.getElementById('migdiagram');
-  if(n===1){ host.innerHTML='<div class="note">1 population — no migration</div>'; return; }
-  // show arrows for any m>0 (even when it rounds to 0.0000 in the read-out — m = 0.5·t³ makes
-  // tiny nudges display as zero while still being real migration); only exact m=0 hides them
-  const showMig = m>0;
   // resolve theme colours to concrete strings (SVG attrs can't read var()); re-read each render
   const accent = cssVar('--accent') || '#0a6355';   // arrows/links follow the theme accent
   const panel  = cssVar('--panel')  || '#fdfbf3';   // population-circle fill
   const ink    = cssVar('--ink')    || '#100f0c';   // circle outline + number
   const f=v=>v.toFixed(2);
+  // single population: one centred circle, no migration
+  if(n===1){
+    const Wd=280, Hd=70, r=13;
+    host.innerHTML=`<svg viewBox="0 0 ${Wd} ${Hd}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="single population">`
+      +`<circle cx="${Wd/2}" cy="${Hd/2}" r="${r}" fill="${panel}" stroke="${ink}" stroke-width="1.5"/>`
+      +`<text x="${Wd/2}" y="${Hd/2+4.5}" text-anchor="middle" font-size="13" fill="${ink}" style="font-family:var(--body)">1</text></svg>`;
+    return;
+  }
+  // show arrows for any m>0 (even when it rounds to 0.0000 in the read-out — m = 0.5·t³ makes
+  // tiny nudges display as zero while still being real migration); only exact m=0 hides them
+  const showMig = m>0;
   // island model with 3+ demes: ring of circles, every pair joined (n=2 is identical to the row)
   if(islandModel() && n>2){
     const Wd=280, Hd=150, r=13, cx=Wd/2, cy=Hd/2, R=Math.min(cx,cy)-r-6;
@@ -1993,6 +2065,9 @@ function syncPlotUI(){
   const mode = plotMode();
   const fst = mode==='fst';
   document.getElementById('opt-separate').disabled = fst;
+  const sepSeg = document.getElementById('sep-model');
+  sepSeg.classList.toggle('is-disabled', fst);
+  sepSeg.querySelectorAll('button').forEach(b=> b.disabled = fst);
   // het draws He as its own solid line, so the dashed HWE overlay is inert there
   document.getElementById('opt-hwe').disabled = fst || mode==='het';
 }
@@ -2230,7 +2305,7 @@ const tips={
   'opt-btlline':"Draw a vertical dashed line at the bottleneck generation (only when a bottleneck is set).",
   btlN:"Population size from the bottleneck generation onward. Smaller = stronger drift.",
   plotmode:"What to plot over generations.",
-  'opt-separate':"Split the overlaid quantities into their own subplots — one per population for the allele plots, one per genotype or heterozygosity for those plots.",
+  'sep-model':"Split the overlaid quantities into their own subplots — one per population for the allele plots, one per genotype or heterozygosity for those plots.",
   run:"Start a fresh simulation from the current settings.",
   continue:"Run more generations, extending the current run.",
   reset:"Clear the plot and results.",
@@ -2289,6 +2364,7 @@ mirrorGens();
 updateBtlUI();
 syncPlotUI();
 updateMigModelUI();
+updateMigUI();
 renderLegend();
 draw();
 
