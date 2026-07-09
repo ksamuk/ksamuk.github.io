@@ -184,20 +184,77 @@
     text-shadow:0 2px 0 #000,0 4px 0 #fff,0 6px 0 #000,0 8px 0 #fff,
                 0 10px 0 #000,0 12px 0 #fff,0 14px 0 #000,0 16px 0 #fff;
     filter:url(#dw-wave);}
+  /* heartbeat while the Disorder music easter egg is playing (two quick beats, then rest) */
+  @keyframes egg-heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.05)}24%{transform:scale(1)}36%{transform:scale(1.035)}48%{transform:scale(1)}}
+  html[data-theme="disorder"] #controls h1.egg-playing{animation:egg-heartbeat 1.1s ease-in-out infinite; transform-origin:center}
   html[data-theme="disorder"] button{text-transform:uppercase; letter-spacing:.08em; font-weight:700}
   html[data-theme="disorder"] button.primary{background:#fff; border-color:#fff; color:#000}
   html[data-theme="disorder"] button.primary:hover{background:#cfcfcf; border-color:#cfcfcf; color:#000; box-shadow:none}
   html[data-theme="disorder"] button:hover{border-color:#fff; color:#fff}
   html[data-theme="disorder"] #chartwrap{background:#000; border:1px solid #4a4a4a}
-  html[data-theme="disorder"] .facet-title{fill:#fff}          /* else black & invisible on dark */
-  html[data-theme="disorder"] .axis-label{font-family:var(--body)}   /* Inter, not condensed Arial Narrow */
+  html[data-theme="disorder"] .facet-title{fill:#fff; font-family:'Fyodor',var(--serif)}  /* white (else invisible on dark) + Fyodor display face */
+  html[data-theme="disorder"] .axis-label{font-family:'Fyodor',var(--serif)}   /* Fyodor display face on the axis titles */
+  html[data-theme="disorder"] #stats .lbl,
+  html[data-theme="disorder"] #stats .val{font-family:'Fyodor',var(--serif)}   /* …and on the stat-tile labels + values */
   html[data-theme="disorder"] table.fst th{color:#fff}
+  /* lighten the unchecked toggle boxes: transparent-on-near-black reads too faint, so give the
+     empty box a mid-grey fill (checked state still fills the whole pill white, so this only shows when off) */
+  html[data-theme="disorder"] #plotopts input[type=checkbox]:not(:checked),
+  html[data-theme="disorder"] .chkrow input[type=checkbox]:not(:checked){background:#4a4a4a}
   html[data-theme="disorder"] ::selection{background:#fff; color:#000}
+
+  /* Sysfont (Alina Sava) — an OFL revival of Susan Kare's Chicago bitmap face; used only by Xerox.
+     Embedded base64 woff2 (~4 KB) so the file stays fully offline like the other faces. */
+  @font-face{font-family:'Sysfont';font-weight:400;font-style:normal;font-display:swap;
+    src:url(data:font/woff2;base64,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) format('woff2')}
+
+  /* Fyodor (Alex Kaczun) — an OFL condensed display face; used only by Disorder for the
+     per-population facet titles. Embedded base64 woff2 (~12 KB) so the file stays offline. */
+  @font-face{font-family:'Fyodor';font-weight:400;font-style:normal;font-display:swap;
+    src:url(data:font/woff2;base64,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) format('woff2')}
+
+  /* Xerox: the 1981 Star / Smalltalk desktop — pure 1-bit black-on-white "icon" panels with
+     heavy black keylines, hard corners, and a dithered grey desktop backdrop. */
+  html[data-theme="xerox"]{
+    --bg:#ffffff; --panel:#ffffff; --panel2:#ffffff; --edge:#000000;
+    --ink:#000000; --ink-soft:#000000; --muted:#000000;
+    --accent:#000000; --accent-soft:#333333; --gold:#000000;
+    --keyline:#000000; --chip:#ffffff;
+    --mean:#000000;
+    /* the chrome is 1-bit, but the plots keep a working dark palette so multi-population and
+       genotype runs stay legible on the white panels (grayscale alone can't separate 5 series) */
+    --pop1:#000000; --pop2:#c00000; --pop3:#0033cc; --pop4:#008000; --pop5:#804000;
+    --geno-aa:#c00000; --geno-ab:#000000; --geno-bb:#0033cc;
+    --grid:#c8c8c8; --axis:#000000;
+    --line-invert:0; --rep-alpha-scale:1; --line-bold-width:2.6;
+    --serif:'Sysfont','Geneva','Tahoma',sans-serif;   /* Chicago-style bitmap face */
+    --body:'Sysfont','Geneva','Tahoma',sans-serif;
+    --base-font:15px;
+    --radius-sm:0px; --radius-md:0px; --radius-lg:0px;           /* hard, bitmap-sharp corners */
+    --group-border:2px solid #000; --group-shadow:none;
+    --btn-border:2px solid #000; --btn-shadow:none;
+    --sidebar-bg:#ffffff; --sidebar-border:2px solid #000;
+    --chip-border:2px solid #000;
+    --h1-weight:800;
+    --plot-px:5;   /* plot lines drawn as a grid-snapped staircase on a 5px cell → clean pixel-line look */
+    /* 50%-grey stipple, like the Star desktop pattern */
+    --body-bg-image:radial-gradient(#000 40%, transparent 42%);
+    --body-bg-size:3px 3px;
+  }
+  html[data-theme="xerox"] button:hover{background:#000; color:#fff; border-color:#000; box-shadow:none}
+  html[data-theme="xerox"] .row label .val{font-weight:400}   /* 1-bit look: param value numbers not bold */
+  html[data-theme="xerox"] #chartwrap{border:2px solid #000}
+  /* the legend text is black on the grey stipple backdrop → give it a white "label" box so it reads */
+  html[data-theme="xerox"] #legend{background:#fff; border:2px solid #000; padding:6px 12px;
+    width:fit-content; max-width:100%; color:#000}
 
   /* mascot: present in the DOM but hidden in every theme */
   .corner-mascot{display:none}
   /* theme picker (sidebar) */
   #themepick{display:flex; align-items:center; gap:8px; margin:0 0 16px; font-size:12.5px; color:var(--muted)}
+  /* styled as a full-width parameter-group panel (same chrome as .group), not a transport button */
+  #reset-all{display:block; width:100%; margin:0 0 18px; padding:14px 16px; text-align:center;
+    border:var(--group-border); border-radius:var(--radius-lg); background:var(--panel2); box-shadow:var(--group-shadow)}
   #themepick select{flex:1; font-family:var(--body); font-size:13px; color:var(--ink);
     background:var(--panel); border:var(--btn-border); border-radius:var(--radius-md);
     box-shadow:var(--btn-shadow); padding:6px 10px; cursor:pointer}
@@ -252,7 +309,7 @@
     border:var(--btn-border); background:var(--panel); color:var(--muted); border-radius:var(--radius-md); box-shadow:var(--btn-shadow)}
   .minibtn:hover{border-color:var(--accent); color:var(--accent)}
   /* ---- plot area ---- */
-  #main{flex:1; display:flex; flex-direction:column; min-width:0; padding:26px 30px}
+  #main{flex:1; display:flex; flex-direction:column; min-width:0; padding:26px 30px; overflow-y:auto}
   #plotbuttons{display:flex; gap:8px; margin-bottom:14px}
   .topbtn{flex:0 0 auto; width:auto; min-width:92px; padding:8px 16px}
   /* Leading function symbols on the transport buttons. The \FE0E variation selector forces
@@ -263,6 +320,11 @@
   #pausebtn.is-play::before{content:"\25B7\00A0"}   /* toggled Play state */
   #reset2::before{content:"\2715\00A0"}
   #share2::before{content:"\29C9\FE0E\00A0"}
+  /* Scientific-details button leading icon: 📖 by default; Xerox swaps to a 1-bit book glyph
+     to fit its monochrome look. Kawaii keeps its own data-kw sprinkle (not suppressed here). */
+  #sci-open::before{content:"\1F4D6\00A0"}
+  html[data-theme="xerox"] #sci-open::before{content:"\1F56E\FE0E\00A0"}
+  html[data-theme="kawaii"] #sci-open::before{content:none}   /* Kawaii uses its own data-kw 📖 sprinkle instead */
   html[data-theme="kawaii"] #run2::before,
   html[data-theme="kawaii"] #continue2::before,
   html[data-theme="kawaii"] #pausebtn::before,
@@ -299,12 +361,14 @@
     border:var(--btn-border); border-radius:var(--radius-md); box-shadow:var(--btn-shadow); padding:4px 8px; cursor:pointer}
   .checkrow label{display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--ink); cursor:pointer; margin-bottom:5px}
   .checkrow input{accent-color:var(--accent); width:15px; height:15px; cursor:pointer}
-  /* stat tiles: label above a big value, auto-fitting grid that reflows to fewer columns as width shrinks */
-  .statgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:10px}
-  .statgrid .stat{display:flex; flex-direction:column; gap:3px; padding:9px 12px;
+  /* stat tiles: label above a big value, auto-fitting grid that reflows to fewer columns as width shrinks.
+     Every size is multiplied by --sz (default 1), a zoom-responsive scale set in JS: on browser zoom-in
+     the tiles shrink so the flex:1 plot reclaims the space instead of the fixed-size grid eating it. */
+  .statgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(calc(132px*var(--sz,1)),1fr)); gap:calc(10px*var(--sz,1))}
+  .statgrid .stat{display:flex; flex-direction:column; gap:3px; padding:calc(9px*var(--sz,1)) calc(12px*var(--sz,1));
     background:var(--panel2); border:var(--group-border); border-radius:var(--radius-md)}
-  .statgrid .lbl{font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); line-height:1.2}
-  .statgrid .val{font-size:19px; font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums; line-height:1.15}
+  .statgrid .lbl{font-size:calc(11px*var(--sz,1)); text-transform:uppercase; letter-spacing:.05em; color:var(--muted); line-height:1.2}
+  .statgrid .val{font-size:calc(19px*var(--sz,1)); font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums; line-height:1.15}
   #fstwrap{margin-top:12px}
   #fstwrap .cap{font-size:13px; color:var(--muted); font-style:italic; margin-bottom:6px}
   table.fst{border-collapse:collapse; font-size:12.5px; font-variant-numeric:tabular-nums}
@@ -329,9 +393,14 @@
   #canvas{position:absolute; top:0; left:0}
   #svg{position:absolute; top:0; left:0; pointer-events:none}
   #plottip{position:absolute; display:none; pointer-events:none; z-index:5;
-    background:var(--panel); border:1px solid var(--edge); border-radius:3px;
-    padding:5px 8px; font-family:var(--body); font-size:12px; color:var(--ink);
-    box-shadow:0 2px 6px rgba(0,0,0,.18); white-space:nowrap; line-height:1.35}
+    background:var(--panel); border:1px solid var(--keyline); border-radius:6px;
+    padding:8px 11px; font-family:var(--body); font-size:12px; color:var(--ink);
+    box-shadow:0 6px 26px rgba(45,33,12,.20); white-space:nowrap; line-height:1.4}
+  #plottip::after{content:""; position:absolute; left:var(--arrow,50%); bottom:-6px; width:11px; height:11px;
+    background:var(--panel); border-right:1px solid var(--keyline); border-bottom:1px solid var(--keyline);
+    transform:translateX(-50%) rotate(45deg)}
+  #plottip.below::after{bottom:auto; top:-6px; border:none;
+    border-left:1px solid var(--keyline); border-top:1px solid var(--keyline)}
   #plottip b{font-weight:600}
   #plottip .val{font-variant-numeric:tabular-nums}
   .axis path,.axis line{stroke:var(--axis)}
@@ -372,10 +441,14 @@
     /* stack the plot-option pills full-width so they line up tidily (uneven-width pills look
        ragged when they wrap); the Plot: dropdown stacks with them */
     #plotopts{flex-direction:column; align-items:stretch; gap:8px}
+    /* the Plot: label (emoji + dropdown) isn't a full-width pill, so centre its contents */
+    #plotopts .ctl{justify-content:center}
     /* the sidebar's own Run/Continue/Clear are redundant on mobile — the plot bar has them */
     #controls > .buttons{display:none}
     /* menu bar: one button per settings group */
     #mobilenav{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:2px 0 0}
+    /* the group menu (#mobilenav) sits directly above Restore-defaults on phones — give it room */
+    #reset-all{margin-top:14px}
     #mobilenav .mobnav-btn{flex:1 1 auto; width:auto; min-width:0; padding:10px 12px; font-size:13px}
     #mobilenav .mobnav-btn.active{background:var(--accent); border-color:var(--accent); color:var(--panel)}
     /* each group is hidden from the scroll flow and pops up as a bottom sheet on demand */
@@ -472,8 +545,11 @@
       <option value="minimal">🧼 Clean</option>
       <option value="kawaii">🌸 Kawaii</option>
       <option value="disorder">🧷 Disorder</option>
+      <option value="xerox">🖨️ Xerox</option>
     </select>
   </div>
+
+  <button id="reset-all">↺ Restore defaults</button>
 
   <div class="group">
     <h2 data-kw="🐣">Population</h2>
@@ -593,6 +669,9 @@
     </div>
     <div class="hint">Initial size and total generations are shared with the Population panel — changing one changes the other. At the bottleneck generation every population drops to the new size; smaller = stronger drift.</div>
   </div>
+  <div id="sci-link">
+    <button type="button" id="sci-open" class="minibtn" data-kw="📖">Scientific details</button>
+  </div>
 </div>
 
 <div id="main">
@@ -607,12 +686,14 @@
     <label class="ctl" data-kw="🎨">Plot:
       <select id="plotmode">
         <option value="allele" data-kw="🎀">Allele frequency (A)</option>
+        <option value="allelea" data-kw="🎀">Allele frequency (a)</option>
         <option value="genotype" data-kw="🧬">Genotype frequencies (AA, Aa, aa)</option>
         <option value="het" data-kw="💞">Heterozygosity (Hₑ, Hₒ)</option>
         <option value="fst" data-kw="🗺️">Fₛₜ over generations</option>
       </select>
     </label>
-    <label data-kw="🪟"><input type="checkbox" id="opt-separate"> Separate plot per population</label>
+    <label data-kw="🪟"><input type="checkbox" id="opt-separate"> <span id="opt-separate-lbl">One plot</span></label>
+    <label data-kw="📈"><input type="checkbox" id="opt-mean" checked> Show mean line</label>
     <label data-kw="📐"><input type="checkbox" id="opt-hwe"> Show HWE expectation</label>
     <label data-kw="🎬"><input type="checkbox" id="opt-animate" checked> Animate over generations</label>
     <label data-kw="📍"><input type="checkbox" id="opt-btlline"> Mark bottleneck generation</label>
@@ -636,9 +717,6 @@
     <div class="stat"><span class="lbl">Overall F<sub>ST</sub></span><b class="val" id="s_FST">—</b></div>
   </div>
   <div id="fstwrap"></div>
-  <div id="sci-link">
-    <button type="button" id="sci-open" class="minibtn" data-kw="📖">📖 Scientific details</button>
-  </div>
 </div>
 
 <!-- Scientific-details modal: full model write-up + parameter reference + citations. Themed
@@ -971,6 +1049,32 @@ const genoObs = [ (p,ho)=>p-ho/2, (p,ho)=>ho, (p,ho)=>(1-p)-ho/2 ];
 const rgb  = c => `rgb(${c[0]},${c[1]},${c[2]})`;
 const darkC = c => [Math.round(c[0]*boldDarken), Math.round(c[1]*boldDarken), Math.round(c[2]*boldDarken)];  // ×boldDarken brightness (array)
 const dark = c => rgb(darkC(c));
+// HSL round-trip so each replicate can get a slightly different tint of its base colour —
+// enough to trace one replicate's path through the cloud without losing "which population".
+function rgb2hsl(c){
+  const r=c[0]/255,g=c[1]/255,b=c[2]/255, mx=Math.max(r,g,b), mn=Math.min(r,g,b), d=mx-mn;
+  let h=0; if(d){ h = mx===r ? ((g-b)/d)%6 : mx===g ? (b-r)/d+2 : (r-g)/d+4; h*=60; if(h<0)h+=360; }
+  const l=(mx+mn)/2, s=d?d/(1-Math.abs(2*l-1)):0;
+  return [h,s,l];
+}
+function hsl2rgb(h,s,l){
+  const c=(1-Math.abs(2*l-1))*s, x=c*(1-Math.abs((h/60)%2-1)), m=l-c/2;
+  let r,g,b;
+  if(h<60)[r,g,b]=[c,x,0]; else if(h<120)[r,g,b]=[x,c,0]; else if(h<180)[r,g,b]=[0,c,x];
+  else if(h<240)[r,g,b]=[0,x,c]; else if(h<300)[r,g,b]=[x,0,c]; else [r,g,b]=[c,0,x];
+  return [Math.round((r+m)*255),Math.round((g+m)*255),Math.round((b+m)*255)];
+}
+// Deterministic per-replicate shade: spread hue ±40° and lightness ±0.15 across the reps
+// (r keeps its shade run-to-run). Hue does most of the work for colour themes; the
+// lightness spread also separates greyscale themes (Xerox) where hue is meaningless.
+function repShade(c, r, reps){
+  if(reps<=1) return c;
+  const f = r/(reps-1) - 0.5;                        // -0.5 … +0.5 across the replicates
+  let [h,s,l] = rgb2hsl(c);
+  h = ((h + f*80)%360 + 360)%360;
+  l = Math.min(0.85, Math.max(0.2, l + f*0.30));
+  return hsl2rgb(h, s, l);
+}
 // theme-aware bold-mean vs faint-replicate colours. Light themes: bold = darker shade,
 // replicate cloud = base colour. Dark themes (--line-invert): reversed — bold = bright
 // base colour so the mean pops, replicate cloud = darkened so it recedes on the dark bg.
@@ -997,7 +1101,11 @@ document.querySelectorAll('#mig-model button').forEach(b=>b.addEventListener('cl
   document.querySelectorAll('#mig-model button').forEach(o=>o.setAttribute('aria-pressed', String(o===b)));
   updateMigModelUI();
 }));
-document.getElementById('opt-separate').addEventListener('change', ()=>{ renderLegend(); draw(); });
+// the "separate" toggle reads either "One plot" (overlaid) or "Multiple plots" (one subplot per
+// quantity — populations for the allele plots, genotypes/heterozygosities for those plots)
+function updateSeparateLabel(){ document.getElementById('opt-separate-lbl').textContent = document.getElementById('opt-separate').checked ? 'Multiple plots' : 'One plot'; }
+document.getElementById('opt-separate').addEventListener('change', ()=>{ updateSeparateLabel(); renderLegend(); draw(); });
+document.getElementById('opt-mean').addEventListener('change', ()=>{ renderLegend(); draw(); });
 document.getElementById('opt-hwe').addEventListener('change', ()=>{ renderLegend(); draw(); });
 // stats are now computed per plot mode (the F_ST time series is built only in F_ST mode), so a
 // mode switch must invalidate them and let draw() recompute for the newly selected mode.
@@ -1235,15 +1343,31 @@ let W=0,H=0;
 // frame — the old redraw-from-zero was quadratic in generations. `curPlan` is the render plan
 // of the run in progress, reused across frames since it's constant during one reveal.
 let buf=null, bctx=null, curPlan=null;
+// Hover isolation (see the hover tooltip): when a bold mean line is hovered, paintFull dims every
+// other line so the hovered path stands isolated. `committedKey` is the line the dim is actually
+// keyed to; `activeKey` is the line rendered bright (kept alive through the fade-out); `dimAmt`
+// ramps 0→1 (nothing dimmed → fully dimmed) so the fade is smooth. `pendingKey`/`hoverTimer`
+// debounce the on/off transitions so a quick sweep across the plot doesn't flash the dim.
+let committedKey=null, activeKey=null, dimAmt=0, dimTarget=0, dimFrom=0, dimT0=0, dimRAF=null,
+    pendingKey=null, hoverTimer=null;
 
-// Facet grid geometry — how the population subplots tile. On phones we cap at 2 columns
-// (two populations per row) and let the chart grow taller; desktop keeps the old layout
-// (1–3 across, wrapping to a second row for 4–5).
+// What "Multiple plots" splits into for the current mode: modes with several overlaid quantities
+// (genotype = AA/Aa/aa, het = He/Hobs) facet BY QUANTITY (populations overlaid within each);
+// single-quantity modes (allele, allele a) facet BY POPULATION as before.
+const MODE_SERIES = {allele:1, allelea:1, genotype:3, het:2, fst:1};
+function facetUnit(){
+  const mode = plotMode();
+  const bySeries = MODE_SERIES[mode] > 1;
+  const demes = state ? state.demes : P.demes;
+  return { bySeries, nF: bySeries ? MODE_SERIES[mode] : demes };
+}
+
+// Facet grid geometry — how the subplots tile. On phones we cap at 2 columns and let the chart
+// grow taller; desktop keeps the old layout (1–3 across, wrapping to a second row for 4–5).
 function facetGrid(){
   const isFst = plotMode()==='fst';
   const separate = !isFst && document.getElementById('opt-separate').checked;
-  const demes = state ? state.demes : P.demes;
-  const nF = separate ? demes : 1;
+  const nF = separate ? facetUnit().nF : 1;
   const mobile = window.matchMedia('(max-width:760px)').matches;
   const cols = !separate ? 1
              : mobile   ? Math.min(2, nF)
@@ -1256,12 +1380,16 @@ function sizeChart(){
   const g=facetGrid();
   // Phones: give each separate-population subplot a fixed short height (~a 4-up cell) and grow
   // the chart one row-height per extra row, instead of cramming every row into 58vh.
-  if(g.mobile && g.separate){
-    wrap.style.height = (g.rows*220) + 'px';
-    wrap.style.minHeight = '0px';
+  if(g.mobile){
+    if(g.separate){ wrap.style.height = (g.rows*220) + 'px'; wrap.style.minHeight = '0px'; }
+    else          { wrap.style.height = '';               wrap.style.minHeight = '';   }  // CSS 58vh / 300px applies
   } else {
+    // Desktop: guarantee a usable plot height so the stats grid + F_ST table don't crush the chart
+    // in the fixed-viewport column — one row-height (240 px) for the overlaid single panel, and
+    // rows×240 for separate mode's multi-row grids. It's a min-height, so tall viewports still let
+    // flex:1 grow it; when it overflows, #main scrolls.
     wrap.style.height = '';
-    wrap.style.minHeight = '';
+    wrap.style.minHeight = (g.rows*240) + 'px';
   }
   W=wrap.clientWidth; H=wrap.clientHeight;
   const dpr=window.devicePixelRatio||1;
@@ -1277,8 +1405,8 @@ function blitBuf(){ ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0
 function clearBuf(){ bctx.save(); bctx.setTransform(1,0,0,1,0,0); bctx.clearRect(0,0,buf.width,buf.height); bctx.restore(); }
 const alphaFor = n => n>120?0.14 : n>60?0.22 : n>20?0.38 : 0.65;
 
-const modeTitle = {allele:'Frequency of allele A', genotype:'Genotype frequency',
-                   het:'Heterozygosity', fst:'F_ST'};
+const modeTitle = {allele:'Frequency of allele A', allelea:'Frequency of allele a',
+                   genotype:'Genotype frequency', het:'Heterozygosity', fst:'F_ST'};
 
 // Build the render plan: scales, layers, and per-facet geometry. Everything here is constant
 // across the frames of one animated reveal, so animStep reuses the stored plan instead of
@@ -1295,6 +1423,7 @@ function buildPlan(){
   if(mode==='het') yMax=0.6;
   else if(isFst){ let mx=0.05; if(state&&state.stats) for(const v of state.stats.FSTo) if(v>mx)mx=v; yMax=Math.min(1, mx*1.15); }
 
+  const showMean = document.getElementById('opt-mean').checked;
   const showHwe = state && !isFst && document.getElementById('opt-hwe').checked;
   const showBtlLine = state && state.btlOn && document.getElementById('opt-btlline').checked;
   // per-population series. simLayers = simulated/observed (solid, with replicate lines);
@@ -1306,22 +1435,45 @@ function buildPlan(){
     if(mode==='allele'){
       simLayers=[{val:(r,d,g)=>hist[r][d][g], col:popCol, name:''}];
       expLayers=[{val:(r,d,g)=>state.stats.pDet[d][g], col:popCol}];
+    } else if(mode==='allelea'){
+      // frequency of the a allele = 1 − p (mirror of allele mode)
+      simLayers=[{val:(r,d,g)=>1-hist[r][d][g], col:popCol, name:''}];
+      expLayers=[{val:(r,d,g)=>1-state.stats.pDet[d][g], col:popCol}];
     } else if(mode==='genotype'){
-      simLayers=genoObs.map((fn,gi)=>({val:(r,d,g)=>fn(hist[r][d][g],hobsH[r][d][g]), col:_=>genoColors[gi], name:genoNames[gi]}));
-      expLayers=genoFns.map((fn,gi)=>({val:(r,d,g)=>fn(hist[r][d][g]), col:_=>genoColors[gi]}));
+      simLayers=genoObs.map((fn,gi)=>({val:(r,d,g)=>fn(hist[r][d][g],hobsH[r][d][g]), col:_=>genoColors[gi], name:genoNames[gi], ttl:genoNames[gi]}));
+      // HWE expectation from the STARTING allele freq (gen 0), so the dashed line is flat and
+      // the gap to the solid lines shows how the sim drove genotypes away from initial HWE.
+      expLayers=genoFns.map((fn,gi)=>({val:(r,d,g)=>fn(hist[r][d][0]), col:_=>genoColors[gi]}));
     } else if(mode==='het'){
       // He (2pq, expected) and Hobs (observed) as two solid series — they diverge under
       // inbreeding/assortative mating. Coloured with the AA / aa genotype colours.
       simLayers=[
-        {val:(r,d,g)=>{const p=hist[r][d][g];return 2*p*(1-p);}, col:_=>genoColors[0], name:'H<sub>e</sub>'},
-        {val:(r,d,g)=>hobsH[r][d][g], col:_=>genoColors[2], name:'H<sub>obs</sub>'}
+        {val:(r,d,g)=>{const p=hist[r][d][g];return 2*p*(1-p);}, col:_=>genoColors[0], name:'H<sub>e</sub>', ttl:'H', sub:'e'},
+        {val:(r,d,g)=>hobsH[r][d][g], col:_=>genoColors[2], name:'H<sub>obs</sub>', ttl:'H', sub:'obs'}
       ];
       expLayers=[];
     }
   }
 
   const TL=18, TB=22, padTop=8, padSide=6, gap=16;
-  const facets = separate ? d3.range(demes) : [null];
+  const {bySeries, nF:nUnit} = facetUnit();
+  // Colour genotype/het lines BY POPULATION instead of by series when several populations share a
+  // panel — otherwise every population's AA (or He) line is the same colour and can't be told apart.
+  // Two cases: (a) split-by-series facets (each overlays all populations), and (b) the overlaid
+  // genotype plot. het overlaid keeps its He/Hobs colours (only two series, still legible). tcol
+  // preserves each series' identity colour for the subplot title / tooltip.
+  const colorByPop = demes>1 && ((separate && bySeries) || (!separate && mode==='genotype'));
+  if(colorByPop){
+    const pc = d=>demeColors[d%demeColors.length];
+    for(const L of simLayers){ L.tcol=L.col(0); L.col=pc; }
+    for(const L of expLayers){ L.tcol=L.col(0); L.col=pc; }
+  }
+  // Per-replicate shading (repShade) helps trace one replicate when a line has a hue to itself
+  // (allele/allele-a: one line per population; F_ST). But when several populations share a panel
+  // coloured by population (colorByPop), a per-replicate hue spread would blur which population a
+  // line belongs to — so there the replicate lines stay flat, one colour per population.
+  const shadeReps = !colorByPop;
+  const facets = separate ? d3.range(nUnit) : [null];
   const nF = facets.length;
   const {cols, rows} = facetGrid();
   const cellW = (W - TL - padSide - gap*(cols-1)) / cols;
@@ -1338,8 +1490,14 @@ function buildPlan(){
     const iw=x1-x0, nyt=Math.max(3, Math.round((y1-y0)/45));
     const xAxis=d3.axisBottom(x).tickFormat(d3.format('d'));
     if(iw<150) xAxis.tickValues([0,gmax]); else xAxis.ticks(Math.round(iw/70));
-    const popsIn = separate ? [i] : d3.range(demes);
-    cells.push({i,cx,cy,x0,x1,y0,y1,x,y,iw,nyt,xAxis,popsIn});
+    // Which populations / series this cell draws, and its facet title (only used when separate)
+    const popsIn   = (separate && !bySeries) ? [i] : d3.range(demes);
+    const layersIn = (separate &&  bySeries) ? [i] : d3.range(simLayers.length);
+    let sep=null;
+    if(separate) sep = bySeries
+      ? {col:simLayers[i].tcol||simLayers[i].col(0), ttl:simLayers[i].ttl, sub:simLayers[i].sub||null}
+      : {col:demeColors[i%demeColors.length], ttl:(cellW<175?'Pop ':'Population ')+(i+1), sub:null};
+    cells.push({i,cx,cy,x0,x1,y0,y1,x,y,iw,nyt,xAxis,popsIn,layersIn,sep});
   }
   // Bold mean-line series exposed for hover tooltips: label + colour + value getter (mean over
   // replicates), matching the lineWidth-2.6 lines drawn in paintFull.
@@ -1348,18 +1506,18 @@ function buildPlan(){
     for(const c of cells){
       const series=[];
       if(isFst){
-        series.push({label:'F<sub>ST</sub>', get:g=>state.stats.FSTo[g]});
+        series.push({label:'F<sub>ST</sub>', key:'fst', get:g=>state.stats.FSTo[g]});
       } else {
-        for(const L of simLayers) for(const d of c.popsIn){
+        for(const li of c.layersIn){ const L=simLayers[li]; for(const d of c.popsIn){
           const pop = demes>1 ? `Population ${d+1}` : 'Population';
           const label = L.name ? (demes>1 ? `${L.name} · ${pop}` : L.name) : pop;
-          series.push({label, get:g=>{ let s=0; for(let r=0;r<reps;r++) s+=L.val(r,d,g); return s/reps; }});
-        }
+          series.push({label, key:`${li}:${d}`, get:g=>{ let s=0; for(let r=0;r<reps;r++) s+=L.val(r,d,g); return s/reps; }});
+        }}
       }
       c.series=series;
     }
   }
-  return {mode,isFst,separate,gmax,demes,yTitle,showHwe,showBtlLine,simLayers,expLayers,TL,TB,cellW,cells};
+  return {mode,isFst,separate,gmax,demes,yTitle,showMean,showHwe,showBtlLine,shadeReps,simLayers,expLayers,TL,TB,cellW,cells};
 }
 
 // SVG axes / gridlines / labels, plus the static bottleneck marker (drawn into the buffer,
@@ -1373,6 +1531,12 @@ function paintChrome(plan){
   if(plan.isFst){                                   // render F_ST with a real subscript tspan
     yLbl.append('tspan').text('F');
     yLbl.append('tspan').attr('dy','3').attr('font-size','10px').text('ST');
+  } else if(plan.mode==='allelea' && document.documentElement.getAttribute('data-theme')==='disorder'){
+    // Disorder's axis face (Fyodor) is caps-only, so a lowercase "a" is indistinguishable from
+    // "A". Render the trailing allele letter in the sans-serif body face, which has a true
+    // lowercase glyph.
+    yLbl.append('tspan').text('Frequency of allele ');
+    yLbl.append('tspan').attr('font-family',cssVar('--body')).text('a');
   } else yLbl.text(plan.yTitle);
   for(const c of plan.cells){
     svg.append('g').attr('class','grid').attr('transform',`translate(${c.x0},0)`)
@@ -1380,14 +1544,18 @@ function paintChrome(plan){
     svg.append('g').attr('class','axis').attr('transform',`translate(0,${c.y1})`).call(c.xAxis);
     svg.append('g').attr('class','axis').attr('transform',`translate(${c.x0},0)`)
        .call(d3.axisLeft(c.y).ticks(c.nyt));
-    if(plan.separate)
-      svg.append('text').attr('class','facet-title')
-         .attr('x',c.x0).attr('y',c.cy+11).attr('fill',rgb(demeColors[c.i%demeColors.length]))
-         .text((plan.cellW<175?'Pop ':'Population ')+(c.i+1));
+    if(plan.separate && c.sep){
+      const t=svg.append('text').attr('class','facet-title')
+         .attr('x',c.x0).attr('y',c.cy+11).attr('fill',rgb(c.sep.col));
+      t.append('tspan').text(c.sep.ttl);
+      if(c.sep.sub) t.append('tspan').attr('dy','3').attr('font-size','10px').text(c.sep.sub);
+    }
   }
   if(plan.showBtlLine && state.btlGen<=plan.gmax){
     bctx.save();
-    bctx.setLineDash([5,4]); bctx.lineWidth=1.2; bctx.strokeStyle=rgba(inkRGB,0.55);
+    // Disorder's ink is already white but 0.55 alpha reads grey on black — draw the marker full white there.
+    const btlWhite = document.documentElement.getAttribute('data-theme')==='disorder';
+    bctx.setLineDash([5,4]); bctx.lineWidth=1.2; bctx.strokeStyle = btlWhite ? '#fff' : rgba(inkRGB,0.55);
     for(const c of plan.cells){
       const bx=c.x(state.btlGen);
       bctx.beginPath(); bctx.moveTo(bx,c.y0); bctx.lineTo(bx,c.y1); bctx.stroke();
@@ -1404,47 +1572,78 @@ function paintChrome(plan){
 function paintFull(plan){
   if(!state) return;
   const reps=state.reps, t=bctx, G=state.gen;
+  // Pixel-staircase themes (Xerox; --plot-px = grid cell size in px): draw each series as a
+  // grid-snapped staircase at full resolution — the mean chunky (one cell thick), replicates thin
+  // and faint — so it reads as clean pixel art with no overlap-mush and no gaps. 0/unset = smooth.
+  const grid  = parseFloat(cssVar('--plot-px'))||0;
+  const repW  = grid>0 ? 1.5 : 1;            // replicate cloud stays thin so the bold mean reads over it
+  const boldW = grid>0 ? grid : boldWidth;   // mean = one grid cell thick
+  const hl = animGen!=null ? null : activeKey;// hovered mean line to isolate (suppressed mid-animation)
+  const showMean = plan.showMean;             // when off, the bold mean lines are skipped and…
+  const repBoost = showMean ? 1 : 2.6;        // …the faint replicate cloud is lifted so it reads on its own
+  const DIM_MIN = 0.1;                        // alpha the non-hovered ("other") lines fully fade to
+  const dimA = 1 - dimAmt*(1-DIM_MIN);       // current multiplier for the "other" lines (1→DIM_MIN over the fade)
   for(const c of plan.cells){
     // Decimate along x: a facet is only ~c.iw px wide, so drawing all G+1 points oversamples
     // by ~G/iw per pixel. Stride to ~2 samples/px — visually identical, but cuts the segment
     // count (and the per-point mean sums) by that factor. Endpoints g=0 and g=G always drawn.
     const stride=Math.max(1, Math.floor(G/Math.max(1,c.iw)));
+    const q = v=>Math.round(v/grid)*grid;                     // snap a y-pixel to the cell grid
+    const yAt = (get,X)=>q(c.y(get(Math.max(0,Math.min(G,Math.round(c.x.invert(X)))))));
     const line=(get)=>{
       t.beginPath();
-      let first=true;
-      for(let g=0;g<=G;g+=stride){ const px=c.x(g),py=c.y(get(g)); first?(t.moveTo(px,py),first=false):t.lineTo(px,py); }
-      if(G%stride!==0){ t.lineTo(c.x(G),c.y(get(G))); }
+      if(grid>0){
+        // step-after staircase on the cell grid: horizontal run at the current y, then a vertical
+        // jump to the next sampled y — an axis-aligned blocky "pixel" path, drawn at full res.
+        let py=yAt(get,c.x0); t.moveTo(c.x0,py);
+        for(let X=c.x0+grid; X<=c.x1+0.5; X+=grid){
+          const xx=Math.min(X,c.x1), ny=yAt(get,xx);
+          t.lineTo(xx,py); t.lineTo(xx,ny); py=ny;
+        }
+      } else {
+        let first=true;
+        for(let g=0;g<=G;g+=stride){ const px=c.x(g),py=c.y(get(g)); first?(t.moveTo(px,py),first=false):t.lineTo(px,py); }
+        if(G%stride!==0){ t.lineTo(c.x(G),c.y(get(G))); }
+      }
       t.stroke();
     };
     if(plan.isFst){
       const st=state.stats;
       if(!state.infinite && reps>1){
-        t.lineWidth=1; t.setLineDash([]); t.strokeStyle=rgba(accentRGB,Math.min(0.12,alphaFor(reps))*repAlphaScale);
-        for(let r=0;r<reps;r++) line(g=>st.FSTrep[r][g]);
+        t.lineWidth=repW; t.setLineDash([]);
+        const fa=Math.min(0.12*repBoost,alphaFor(reps)*repAlphaScale*repBoost)*(hl?dimA:1);
+        for(let r=0;r<reps;r++){ t.strokeStyle=rgba(repShade(accentRGB,r,reps),fa); line(g=>st.FSTrep[r][g]); }
       }
-      t.lineWidth=2.6; t.setLineDash([]); t.strokeStyle=rgb(meanRGB); line(g=>st.FSTo[g]);
+      if(showMean){ t.lineWidth=grid>0?boldW:2.6; t.setLineDash([]); t.strokeStyle = hl && hl!=='fst' ? rgba(meanRGB,dimA) : rgb(meanRGB); line(g=>st.FSTo[g]); }
       continue;
     }
-    const alpha = alphaFor(c.popsIn.length*reps*plan.simLayers.length) * repAlphaScale;
+    const alpha = Math.min(0.8, alphaFor(c.popsIn.length*reps*c.layersIn.length) * repAlphaScale * repBoost);
     // faint replicate lines for the simulated series (omitted when infinite)
     if(!state.infinite){
-      t.lineWidth=1; t.setLineDash([]);
-      for(const L of plan.simLayers){
+      t.lineWidth=repW; t.setLineDash([]);
+      for(const li of c.layersIn){ const L=plan.simLayers[li];
         for(const d of c.popsIn){
-          t.strokeStyle=rgba(faintCol(L.col(d)), alpha);
-          for(let r=0;r<reps;r++) line(g=>L.val(r,d,g));
+          const base=L.col(d), flat=faintCol(base);
+          for(let r=0;r<reps;r++){ t.strokeStyle=rgba(plan.shadeReps?faintCol(repShade(base,r,reps)):flat, alpha*(hl?dimA:1)); line(g=>L.val(r,d,g)); }
         }
       }
     }
-    // bold solid replicate-mean lines
-    t.lineWidth=boldWidth; t.setLineDash([]);
-    for(const L of plan.simLayers)
-      for(const d of c.popsIn){ t.strokeStyle=boldCol(L.col(d)); line(g=>{ let s=0; for(let r=0;r<reps;r++) s+=L.val(r,d,g); return s/reps; }); }
+    // bold solid replicate-mean lines (dim all but the hovered one when a mean is highlighted)
+    if(showMean){
+      t.lineWidth=boldW; t.setLineDash([]);
+      for(const li of c.layersIn){ const L=plan.simLayers[li];
+        for(const d of c.popsIn){
+          const arr = lineInvert ? L.col(d) : darkC(L.col(d));   // boldCol as an array, for optional alpha
+          t.strokeStyle = hl && hl!==`${li}:${d}` ? rgba(arr,dimA) : rgb(arr);
+          line(g=>{ let s=0; for(let r=0;r<reps;r++) s+=L.val(r,d,g); return s/reps; });
+        }
+      }
+    }
     // dashed HWE / no-drift expectation means
     if(plan.showHwe){
       t.setLineDash([7,5]);
-      for(const L of plan.expLayers)
-        for(const d of c.popsIn){ t.strokeStyle=boldCol(L.col(d)); line(g=>{ let s=0; for(let r=0;r<reps;r++) s+=L.val(r,d,g); return s/reps; }); }
+      for(const li of c.layersIn){ const L=plan.expLayers[li]; if(!L) continue;
+        for(const d of c.popsIn){ const arr = lineInvert ? L.col(d) : darkC(L.col(d)); t.strokeStyle = hl ? rgba(arr,dimA) : rgb(arr); line(g=>{ let s=0; for(let r=0;r<reps;r++) s+=L.val(r,d,g); return s/reps; }); } }
       t.setLineDash([]);
     }
   }
@@ -1454,25 +1653,26 @@ function paintFull(plan){
 // canvas (not the buffer, since they move with the reveal).
 function paintDots(plan, gen){
   if(!state) return;
-  const reps=state.reps;
+  const reps=state.reps, showMean=plan.showMean;
   const dot=(px,py,rad,fill)=>{ ctx.beginPath(); ctx.arc(px,py,rad,0,6.2832); ctx.fillStyle=fill; ctx.fill(); };
   for(const c of plan.cells){
     if(plan.isFst){
       const st=state.stats;
       if(!state.infinite && reps>1)
-        for(let r=0;r<reps;r++) dot(c.x(gen), c.y(st.FSTrep[r][gen]), 1.6, rgba(accentRGB,0.6));
-      dot(c.x(gen), c.y(st.FSTo[gen]), 3.5, rgb(meanRGB));
+        for(let r=0;r<reps;r++) dot(c.x(gen), c.y(st.FSTrep[r][gen]), 1.6, rgba(repShade(accentRGB,r,reps),0.6));
+      if(showMean) dot(c.x(gen), c.y(st.FSTo[gen]), 3.5, rgb(meanRGB));
       continue;
     }
     if(!state.infinite){
-      for(const L of plan.simLayers)
+      for(const li of c.layersIn){ const L=plan.simLayers[li];
         for(const d of c.popsIn){
-          const fc=faintCol(L.col(d));
-          for(let r=0;r<reps;r++) dot(c.x(gen), c.y(L.val(r,d,gen)), 1.8, rgba(fc,0.75));
-        }
+          const base=L.col(d), flat=faintCol(base);
+          for(let r=0;r<reps;r++) dot(c.x(gen), c.y(L.val(r,d,gen)), 1.8, rgba(plan.shadeReps?faintCol(repShade(base,r,reps)):flat,0.75));
+        } }
     }
-    for(const L of plan.simLayers)
-      for(const d of c.popsIn){ let s=0; for(let r=0;r<reps;r++) s+=L.val(r,d,gen); s/=reps; dot(c.x(gen), c.y(s), 3.5, boldCol(L.col(d))); }
+    if(showMean)
+      for(const li of c.layersIn){ const L=plan.simLayers[li];
+        for(const d of c.popsIn){ let s=0; for(let r=0;r<reps;r++) s+=L.val(r,d,gen); s/=reps; dot(c.x(gen), c.y(s), 3.5, boldCol(L.col(d))); } }
   }
 }
 
@@ -1529,32 +1729,90 @@ function draw(){
   }
 }
 
+// Repaint the static plot in place after the hovered mean changes, so paintFull can dim the
+// other lines. Cheaper than draw() — reuses curPlan (no stats/layout recompute), just re-strokes
+// the buffer and reveals it. Skipped mid-animation (the reveal owns the canvas then).
+function repaintHover(){
+  if(!curPlan || !state || animGen!=null) return;
+  clearBuf();
+  paintChrome(curPlan);
+  paintFull(curPlan);
+  revealTo(curPlan, state.gen);
+}
+
+// Smoothly ramp the dim toward its target (1 when a line is hovered, 0 when not) and repaint
+// each frame, so the other lines fade in/out over ~DIM_MS rather than snapping. Switching
+// directly between two lines keeps dimAmt at its target (no re-fade) — just an instant swap of
+// which line is bright.
+const DIM_MS = 140;
+function animDim(ts){
+  if(!dimT0) dimT0=ts;
+  const t=Math.min(1,(ts-dimT0)/DIM_MS);
+  dimAmt=dimFrom+(dimTarget-dimFrom)*t;
+  repaintHover();
+  if(t<1){ dimRAF=requestAnimationFrame(animDim); }
+  else { dimRAF=null; dimAmt=dimTarget; if(dimTarget===0) activeKey=null; repaintHover(); }
+}
+// Apply a hover change: start the fade toward its target (or instant-swap the bright line).
+function commitHover(key){
+  if(key===committedKey) return;
+  committedKey=key;
+  if(key!==null) activeKey=key;      // keep the last key rendered bright through the fade-out
+  dimTarget = key!==null ? 1 : 0;
+  if(animGen!=null) return;          // no highlight mid-reveal (the reveal owns the canvas)
+  if(dimRAF){ cancelAnimationFrame(dimRAF); dimRAF=null; }
+  if(dimAmt===dimTarget){ if(dimTarget===0) activeKey=null; repaintHover(); return; }  // just swap the bright line
+  dimFrom=dimAmt; dimT0=0; dimRAF=requestAnimationFrame(animDim);
+}
+// Debounce the on/off transitions: turning the dim on (settling on a line) or off (leaving) waits
+// HOVER_DELAY so a quick pass over the plot doesn't flash. Swapping between two lines while already
+// dimmed is applied immediately — the plate stays dimmed, so there's nothing to flash.
+const HOVER_DELAY = 180;
+const HOVER_DIM = false;   // master switch for the hover-isolation dimming (tooltip is unaffected)
+function clearHoverTimer(){ if(hoverTimer){ clearTimeout(hoverTimer); hoverTimer=null; } pendingKey=null; }
+function onHover(key){
+  if(!HOVER_DIM) return;   // dimming disabled — leave the machinery wired but dormant
+  if(key===committedKey){ clearHoverTimer(); return; }
+  if(key!==null && committedKey!==null){ clearHoverTimer(); commitHover(key); return; } // swap while dimmed
+  if(hoverTimer && key===pendingKey) return;                            // already scheduled toward this key
+  if(hoverTimer) clearTimeout(hoverTimer);
+  pendingKey=key;
+  hoverTimer=setTimeout(()=>{ hoverTimer=null; pendingKey=null; commitHover(key); }, HOVER_DELAY);
+}
+
 // Hover tooltip: find the bold mean line nearest the cursor and report its y-statistic and the
 // generation under the cursor. Reads curPlan's per-cell series getters (built in buildPlan).
 const plottip=document.getElementById('plottip');
 canvas.addEventListener('mousemove', ev=>{
-  if(!state || !curPlan){ plottip.style.display='none'; return; }
+  if(!state || !curPlan || !curPlan.showMean){ plottip.style.display='none'; onHover(null); return; }
   const rect=canvas.getBoundingClientRect();
   const mx=ev.clientX-rect.left, my=ev.clientY-rect.top;
-  let best=null, bestDy=Infinity, bestGen=0;
+  let best=null, bestDy=Infinity, bestGen=0, bestCell=null;
   for(const c of curPlan.cells){
     if(!c.series || mx<c.x0-4 || mx>c.x1+4) continue;
     const gen=Math.max(0, Math.min(state.gen, Math.round(c.x.invert(mx))));
     for(const s of c.series){
       const dy=Math.abs(c.y(s.get(gen))-my);
-      if(dy<bestDy){ bestDy=dy; best=s; bestGen=gen; }
+      if(dy<bestDy){ bestDy=dy; best=s; bestGen=gen; bestCell=c; }
     }
   }
+  // isolate the hovered mean by fading the rest; onHover debounces on/off then ramps the dim
+  onHover((best && bestDy<=14) ? best.key : null);
   if(best && bestDy<=14){
     plottip.innerHTML=`<b>${best.label}</b><br>Gen ${bestGen} · <span class="val">${best.get(bestGen).toFixed(3)}</span>`;
     plottip.style.display='block';
-    let tx=mx+13, ty=my+13;
-    if(tx+plottip.offsetWidth>W) tx=mx-plottip.offsetWidth-13;
-    if(ty+plottip.offsetHeight>H) ty=my-plottip.offsetHeight-13;
-    plottip.style.left=Math.max(0,tx)+'px'; plottip.style.top=Math.max(0,ty)+'px';
+    // point the signpost arrow at the actual data point, box above it (flip below near the top edge)
+    const ax=bestCell.x(bestGen), ay=bestCell.y(best.get(bestGen));
+    const pw=plottip.offsetWidth, ph=plottip.offsetHeight, gap=8;
+    const left=Math.max(0, Math.min(ax-pw/2, W-pw));
+    let below=false, top=ay-ph-gap;
+    if(top<0){ top=ay+gap; below=true; }
+    plottip.classList.toggle('below', below);
+    plottip.style.left=left+'px'; plottip.style.top=top+'px';
+    plottip.style.setProperty('--arrow', Math.max(12, Math.min(ax-left, pw-12))+'px');
   } else plottip.style.display='none';
 });
-canvas.addEventListener('mouseleave', ()=>{ plottip.style.display='none'; });
+canvas.addEventListener('mouseleave', ()=>{ plottip.style.display='none'; onHover(null); });
 
 function updateStats(){
   if(!state) return;
@@ -1584,7 +1842,14 @@ function renderLegend(){
       h+=`<span><span class="swatch" style="border-color:${rgb(demeColors[d%demeColors.length])}"></span>Population ${d+1}</span>`;
     return h;
   };
-  if(mode==='genotype'){
+  // Lines are coloured by population (not by series) whenever several populations share a panel:
+  // split-by-quantity subplots, and the overlaid genotype plot (mirrors buildPlan's colorByPop) —
+  // so the legend keys populations in those cases.
+  const separate = document.getElementById('opt-separate').checked;
+  const byPopLines = mode!=='fst' && demes>1 && ((separate && MODE_SERIES[mode]>1) || (!separate && mode==='genotype'));
+  if(byPopLines){
+    html+=popSwatches();
+  } else if(mode==='genotype'){
     for(let gi=0;gi<genoColors.length;gi++)
       html+=`<span><span class="swatch" style="border-color:${rgb(genoColors[gi])}"></span>${genoNames[gi]}</span>`;
   } else if(mode==='het'){
@@ -1604,7 +1869,9 @@ function renderLegend(){
                : 'HWE expected (p², 2pq, q²)';
     html+=`<span style="font-style:italic">solid = simulated, dashed = ${what}</span>`;
   } else if(!inf && mode!=='fst'){
-    html+='<span style="font-style:italic">Bold line = mean across replicates</span>';
+    html+= document.getElementById('opt-mean').checked
+      ? '<span style="font-style:italic">Bold line = mean across replicates</span>'
+      : '<span style="font-style:italic">Each line = one replicate (mean line hidden)</span>';
   }
   if(inf)
     html+='<span style="font-style:italic">Deterministic expectation (infinite N, no drift)</span>';
@@ -1826,8 +2093,27 @@ function doClear(){
 document.getElementById('run2').addEventListener('click',doRun);
 document.getElementById('continue2').addEventListener('click',doContinue);
 document.getElementById('reset2').addEventListener('click',doClear);
+// Reset-to-defaults: strip any shared-run hash and reload, so every control returns to its
+// initial value. Reloading is exact and needs no per-control maintenance; theme persists via localStorage.
+document.getElementById('reset-all').addEventListener('click',()=>{
+  history.replaceState(null,'',location.pathname);
+  location.reload();
+});
 document.getElementById('pausebtn').addEventListener('click',togglePause);
-window.addEventListener('resize', scheduleDraw);
+// Zoom-responsive stat tiles. Browser zoom (Ctrl +/-) enlarges every CSS px, so at high zoom the
+// fixed-size stat grid eats the main panel and squeezes the flex:1 plot. devicePixelRatio scales with
+// zoom, so we track it against the value at load (baseDPR = the user's zoom when the page opened) and
+// set --sz = clamp(baseDPR/dpr, 0.7, 1): zoom-in shrinks the tiles (floored so text stays legible) and
+// the plot reclaims the freed space; zoom-out leaves them at normal size. Fires on resize, which the
+// browser also dispatches on a zoom change.
+const baseDPR = window.devicePixelRatio || 1;
+function applyStatZoom(){
+  const sz = Math.max(0.7, Math.min(1, baseDPR/(window.devicePixelRatio||1)));
+  document.documentElement.style.setProperty('--sz', sz.toFixed(3));
+  scheduleDraw();
+}
+window.addEventListener('resize', applyStatZoom);
+applyStatZoom();
 
 // ---------- shareable run links ----------
 // A run is fully determined by the control values + the RNG seed (see seedRng), so we serialize
@@ -1838,17 +2124,35 @@ window.addEventListener('resize', scheduleDraw);
 const SHARE_KEYS = Object.keys(P).filter(k=>k!=='gens' && document.getElementById(k)).concat('mu');
 const b64urlEncode = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 const b64urlDecode = s => decodeURIComponent(escape(atob(s.replace(/-/g,'+').replace(/_/g,'/'))));
+// Payload is a positional array (no JSON keys) to keep the URL short: [2, seed, gen,
+// [raw slider values in SHARE_KEYS order], migCode, btl, plotCode, optBits]. migCode 1=island,
+// plotCode indexes PLOT_MODES, optBits packs the four plot-option checkboxes into a bitmask.
+// Lossless: slider values are stored verbatim, so the run reproduces exactly. The leading 2 is a
+// format version, checked in initShared so a future format change can be told apart.
+const PLOT_MODES = ['allele','genotype','het','fst','allelea'];
 function encodeRun(){
-  const c={};
-  for(const k of SHARE_KEYS) c[k]=+document.getElementById(k).value;   // raw slider positions
-  return b64urlEncode(JSON.stringify({
-    v:1, s:state.seed, g:state.gen, c,
-    mig:islandModel()?'island':'stepping',
-    btl:document.getElementById('btl-on').checked?1:0,
-    plot:plotMode(),
-    opt:{ sep:+document.getElementById('opt-separate').checked, hwe:+document.getElementById('opt-hwe').checked,
-          anim:+document.getElementById('opt-animate').checked, btlline:+document.getElementById('opt-btlline').checked }
-  }));
+  const c = SHARE_KEYS.map(k=>+document.getElementById(k).value);      // raw slider positions
+  const opt = (document.getElementById('opt-separate').checked?1:0)
+            | (document.getElementById('opt-hwe').checked?2:0)
+            | (document.getElementById('opt-animate').checked?4:0)
+            | (document.getElementById('opt-btlline').checked?8:0)
+            | (document.getElementById('opt-mean').checked?0:16);   // inverted: bit set = mean hidden, so old links keep it shown
+  return b64urlEncode(JSON.stringify([
+    2, state.seed, state.gen, c,
+    islandModel()?1:0,
+    document.getElementById('btl-on').checked?1:0,
+    PLOT_MODES.indexOf(plotMode()),
+    opt
+  ]));
+}
+// Re-inflate the array payload into the object shape applyShared consumes.
+function fromV2(a){
+  const c={}; SHARE_KEYS.forEach((k,i)=> c[k]=a[3][i]);
+  const O=a[7]|0;
+  return { v:1, s:a[1], g:a[2], c,
+    mig: a[4]?'island':'stepping', btl: a[5],
+    plot: PLOT_MODES[a[6]]||'allele',
+    opt:{ sep:O&1, hwe:O&2, anim:O&4, btlline:O&8, mean:!(O&16) } };
 }
 // relabel a data-kw button without dropping its Kawaii emoji node (sprinkleOne self-clears)
 function relabelBtn(btn, text){ btn.textContent=text; if(kawaiiOn() && btn.dataset.kw) sprinkleOne(btn); }
@@ -1880,10 +2184,11 @@ function applyShared(p){
   document.getElementById('btl-on').checked=!!p.btl; updateBtlUI();
   document.getElementById('plotmode').value=p.plot; syncPlotUI();
   const O=p.opt||{};
-  document.getElementById('opt-separate').checked=!!O.sep;
+  document.getElementById('opt-separate').checked=!!O.sep; updateSeparateLabel();
   document.getElementById('opt-hwe').checked=!!O.hwe;
   document.getElementById('opt-animate').checked=!!O.anim;
   document.getElementById('opt-btlline').checked=!!O.btlline;
+  document.getElementById('opt-mean').checked = O.mean!==false;   // default shown when the key is absent (old links)
   // reproduce the exact generation count on screen (drive the gens slider via its inverse map)
   const gTot=Math.max(GENS_MIN, Math.min(GENS_MAX, p.g|0));
   const gEl=document.getElementById('gens');
@@ -1895,7 +2200,7 @@ function initShared(){
   const m=/[#&]run=([^&]+)/.exec(location.hash);
   if(!m) return;
   let p; try{ p=JSON.parse(b64urlDecode(m[1])); }catch(e){ return; }
-  if(p && p.v===1 && p.c) applyShared(p);
+  if(Array.isArray(p) && p[0]===2) applyShared(fromV2(p));
 }
 
 // ---------- parameter tooltips (glossary-style popover) ----------
@@ -1904,6 +2209,7 @@ const tips={
   p0:"Starting frequency of allele A in each population.",
   reps:"Independent repeats of the whole system; each adds its own set of lines.",
   gens:"Generations simulated per run.",
+  'opt-mean':"Draw the bold line = mean across replicates. Turn off to see the individual replicate trajectories on their own (they brighten to compensate).",
   'opt-hwe':"Overlay the analytical Hardy–Weinberg / no-drift expectation (dashed).",
   'opt-animate':"Reveal the trajectories generation-by-generation. Tick with a run present to replay.",
   selS:"Selection coefficient against genotype aa. Sets w(aa)=1−s (a favored when 0).",
@@ -1924,7 +2230,7 @@ const tips={
   'opt-btlline':"Draw a vertical dashed line at the bottleneck generation (only when a bottleneck is set).",
   btlN:"Population size from the bottleneck generation onward. Smaller = stronger drift.",
   plotmode:"What to plot over generations.",
-  'opt-separate':"Give each population its own subplot.",
+  'opt-separate':"Split the overlaid quantities into their own subplots — one per population for the allele plots, one per genotype or heterozygosity for those plots.",
   run:"Start a fresh simulation from the current settings.",
   continue:"Run more generations, extending the current run.",
   reset:"Clear the plot and results.",
@@ -1933,6 +2239,7 @@ const tips={
 // the top button bar mirrors the sidebar buttons — same tooltips
 tips.run2=tips.run; tips.continue2=tips.continue; tips.reset2=tips.reset;
 tips.share2="Copy a link that reproduces this exact run — settings plus the random seed.";
+tips['reset-all']="Reset simulation to defaults";
 
 // ---------- scientific-details modal ----------
 (function(){
@@ -2036,9 +2343,9 @@ themeSel.addEventListener('change', ()=> applyTheme(themeSel.value));
   if(!h1) return;
   const a = document.getElementById('dw-egg');
   let playing = false;
-  a.addEventListener('play',  ()=> playing = true);
-  a.addEventListener('pause', ()=> playing = false);
-  a.addEventListener('ended', ()=> playing = false);
+  a.addEventListener('play',  ()=>{ playing = true;  h1.classList.add('egg-playing'); });
+  a.addEventListener('pause', ()=>{ playing = false; h1.classList.remove('egg-playing'); });
+  a.addEventListener('ended', ()=>{ playing = false; h1.classList.remove('egg-playing'); });
   h1.addEventListener('dblclick', ()=>{
     if(document.documentElement.getAttribute('data-theme') !== 'disorder') return;
     if(playing){ a.pause(); a.currentTime = 0; return; }   // already playing → stop
@@ -2050,7 +2357,7 @@ themeSel.addEventListener('change', ()=> applyTheme(themeSel.value));
   let saved = 'default';
   try{ saved = localStorage.getItem('biol108-theme') || 'default'; }catch(e){}
   if(saved === 'darkwave') saved = 'disorder';   // migrate the old internal key
-  if(!['default','minimal','kawaii','disorder'].includes(saved)) saved = 'default';
+  if(!['default','minimal','kawaii','disorder','xerox'].includes(saved)) saved = 'default';
   themeSel.value = saved;
   applyTheme(saved);
 })();
@@ -2106,6 +2413,20 @@ themeSel.addEventListener('change', ()=> applyTheme(themeSel.value));
   const themepick = document.getElementById('themepick');
   themepick ? themepick.after(nav) : controls.prepend(nav);
   backdrop.addEventListener('click', close);
+})();
+
+// The Scientific-details footer lives at the bottom of the sidebar on desktop (reclaims plot-area
+// height), but on phones the sidebar is pulled above the plot (order:0), which would float the
+// button up near the title. CSS `order` can't move it since it's nested in #controls, so relocate
+// the node itself: append to #main (page bottom) on phones, back into #controls on desktop.
+(function placeSciLink(){
+  const link = document.getElementById('sci-link');
+  const controls = document.getElementById('controls');
+  const main = document.getElementById('main');
+  const mq = window.matchMedia('(max-width:760px)');
+  const place = () => (mq.matches ? main : controls).appendChild(link);
+  place();
+  mq.addEventListener('change', place);
 })();
 
 // if the page was opened via a shared link, restore its controls + seed and reproduce the run
