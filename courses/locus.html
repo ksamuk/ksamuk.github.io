@@ -3289,9 +3289,11 @@ async function setupExportFrames(){
   }
   const work=document.createElement('canvas'); work.width=work.height=EXPORT_PX;
   const wctx=work.getContext('2d');
-  const composite=(g)=>{
+  const composite=(g,bgFill)=>{
     animGen=g; animBase=null; animAddOpts=null;
     revealTo(plan, g);                              // lines → #canvas, arrivals/frontier dots → #fgcanvas
+    if(bgFill){ wctx.save(); wctx.setTransform(1,0,0,1,0,0);   // opaque backdrop for alpha-less encoders (MP4): transparent corners/gap would render black
+      wctx.fillStyle=bgFill; wctx.fillRect(0,0,EXPORT_PX,EXPORT_PX); wctx.restore(); }
     wctx.drawImage(base,0,0);
     if(!plain){ wctx.save(); rrp(wctx,topX,topY,topW,topH,R); wctx.clip(); }   // clip lines to the plot card
     wctx.drawImage(canvas,PLOT_PAD,PLOT_PAD);        // trajectory lines (inset)
@@ -3383,7 +3385,7 @@ async function plotToMp4Blob(onProgress){
     const encoder=new VideoEncoder({ output:(chunk,meta)=>muxer.addVideoChunk(chunk,meta), error:e=>{ encErr=encErr||e; } });
     encoder.configure({ codec, ...cfgBase });
     for(let i=0;i<gens.length;i++){
-      const work=composite(gens[i]);
+      const work=composite(gens[i],'#ffffff');   // white backdrop — H.264 has no alpha, so transparent regions would encode black
       const last=i===gens.length-1;
       const vf=new VideoFrame(work, { timestamp:i*frameDurUs, duration:last?holdUs:frameDurUs });
       encoder.encode(vf, { keyFrame:i===0 }); vf.close();        // only the first frame is a keyframe → tiny deltas
