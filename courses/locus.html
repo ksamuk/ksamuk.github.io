@@ -4,6 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Locus</title>
+<!-- Link-preview / social cards (Open Graph + Twitter). Absolute URLs: scrapers can't resolve
+     relative paths, and previews only appear when the page is hosted, not from file://. Update
+     the four samuklab.com URLs if the file is moved/renamed. -->
+<meta name="description" content="An interactive Wright–Fisher simulator for allele-frequency dynamics — genetic drift, selection, mutation, and migration at a single locus. Built for BIOL 108.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Locus — population genetics for the classroom">
+<meta property="og:description" content="Watch genetic drift, selection, mutation, and migration play out at a single locus. An interactive Wright–Fisher model for BIOL 108.">
+<meta property="og:url" content="https://www.samuklab.com/courses/locus.html">
+<meta property="og:image" content="https://www.samuklab.com/courses/assets/locus-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Allele-frequency trajectories drifting toward fixation and loss, beside the title 'Locus'.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Locus — population genetics for the classroom">
+<meta name="twitter:description" content="Watch genetic drift, selection, mutation, and migration play out at a single locus. An interactive Wright–Fisher model for BIOL 108.">
+<meta name="twitter:image" content="https://www.samuklab.com/courses/assets/locus-og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..700&family=Fredoka:wght@400..600&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
@@ -2304,10 +2320,14 @@ function onHover(key){
 // Hover tooltip: find the bold mean line nearest the cursor and report its y-statistic and the
 // generation under the cursor. Reads curPlan's per-cell series getters (built in buildPlan).
 const plottip=$('plottip');
-canvas.addEventListener('mousemove', ev=>{
-  if(!state || !curPlan){ plottip.style.display='none'; onHover(null); return; }
+// Locate the line nearest a client-space point, then drive isolation + tooltip. Shared by the mouse
+// (mousemove) and touch (tap/scrub) paths; `thresh` is the max vertical pixel gap that still counts
+// as a hit — wider for touch, since a fingertip is coarser than a cursor on the small phone plots.
+// Returns whether it landed on a line, so the touch handler can preventDefault only on a hit.
+function pointAt(clientX, clientY, thresh){
+  if(!state || !curPlan){ plottip.style.display='none'; onHover(null); return false; }
   const rect=canvas.getBoundingClientRect();
-  const mx=ev.clientX-rect.left, my=ev.clientY-rect.top;
+  const mx=clientX-rect.left, my=clientY-rect.top;
   let best=null, bestDy=Infinity, bestGen=0, bestCell=null;
   for(const c of curPlan.cells){
     if(!c.series || mx<c.x0-4 || mx>c.x1+4) continue;
@@ -2317,9 +2337,10 @@ canvas.addEventListener('mousemove', ev=>{
       if(dy<bestDy){ bestDy=dy; best=s; bestGen=gen; bestCell=c; }
     }
   }
-  // isolate the hovered mean by fading the rest; onHover debounces on/off then ramps the dim
-  onHover((best && bestDy<=14) ? best.key : null);
-  if(best && bestDy<=14){
+  const hit = best && bestDy<=thresh;
+  // isolate the picked mean by fading the rest; onHover debounces on/off then ramps the dim
+  onHover(hit ? best.key : null);
+  if(hit){
     plottip.innerHTML=`<b>${best.label}</b><br>Gen ${bestGen} · <span class="val">${best.get(bestGen).toFixed(3)}</span>`;
     plottip.style.display='block';
     // point the signpost arrow at the actual data point, box above it (flip below near the top edge)
@@ -2332,8 +2353,20 @@ canvas.addEventListener('mousemove', ev=>{
     plottip.style.left=left+'px'; plottip.style.top=top+'px';
     plottip.style.setProperty('--arrow', Math.max(12, Math.min(ax-left, pw-12))+'px');
   } else plottip.style.display='none';
-});
+  return hit;
+}
+canvas.addEventListener('mousemove', ev=>{ pointAt(ev.clientX, ev.clientY, 14); });
 canvas.addEventListener('mouseleave', ()=>{ plottip.style.display='none'; onHover(null); });
+// Touch: no hover, so tap a line to isolate it and it *stays* isolated after the finger lifts
+// (there's nothing to "leave"); drag to scrub along/between lines; tap empty space to clear. A wider
+// hit threshold suits fingertips. preventDefault only on a hit, so a miss still scrolls the page and
+// so the synthetic mouse events a tap emits are swallowed (no double-handling) only when we acted.
+function touchPoint(ev){
+  const t=ev.touches[0]; if(!t) return;
+  if(pointAt(t.clientX, t.clientY, 24)) ev.preventDefault();
+}
+canvas.addEventListener('touchstart', touchPoint, {passive:false});
+canvas.addEventListener('touchmove', touchPoint, {passive:false});
 
 function updateStats(){
   if(!state) return;
