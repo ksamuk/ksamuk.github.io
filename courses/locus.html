@@ -539,7 +539,6 @@
   table.detail tr.overall th,table.detail tr.overall td{border-top:2px solid var(--ink); font-weight:700; color:var(--ink)}
   table.detail tr.overall th{background:var(--panel2)}
   /* parameter tooltip popover (styled like the study-guide glossary pop-ups) */
-  .hastip{cursor:help}
   #termpop{position:absolute; top:0; left:0; z-index:90; max-width:260px; width:max-content;
     padding:9px 13px; border-radius:6px; background:var(--panel); color:var(--ink);
     border:1px solid var(--keyline); box-shadow:0 6px 26px rgba(45,33,12,.20);
@@ -767,7 +766,7 @@
   .tut-dots{display:flex; gap:5px}
   .tut-dots i{width:7px; height:7px; border-radius:50%; background:var(--edge); display:block}
   .tut-dots i.on{background:var(--accent)}
-  .tut-nav button{flex:none; padding:6px 12px; font-family:var(--body); font-size:13px; font-weight:600;
+  .tut-nav button{flex:none; min-width:0; padding:6px 12px; font-family:var(--body); font-size:13px; font-weight:600;
     border:1px solid var(--edge); border-radius:var(--radius-md); background:var(--panel2);
     color:var(--ink-soft); cursor:pointer}
   .tut-nav button:hover{border-color:var(--accent); color:var(--accent)}
