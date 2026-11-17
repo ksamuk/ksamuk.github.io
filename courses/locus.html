@@ -575,6 +575,7 @@
   .legend{display:flex; flex-wrap:wrap; gap:10px 20px; align-items:center; margin-top:10px; font-size:13px; font-style:italic; color:var(--muted)}
   .legend>span{white-space:nowrap}
   .legend .swatch{display:inline-block; width:24px; height:0; border-top:3px solid; vertical-align:middle; margin-right:7px}
+  #div-sel-row{display:flex; width:fit-content; margin-left:auto; margin-right:auto}   /* centred in its panel */
   .migdiagram{margin:4px 0 10px}
   .migdiagram svg{display:block; width:100%; height:auto}
   .migdiagram .note{color:var(--muted); font-style:italic; font-size:12px; text-align:center; padding:6px 0}
@@ -901,12 +902,17 @@
     </div>
     <div class="row">
       <label data-kw="rocket">Migration rate m <span class="val" id="v_m">0.0000</span></label>
-      <input type="range" id="m" min="0" max="1" step="0.001" value="0">
+      <input type="range" id="m" min="0" max="0.794" step="0.001" value="0"><!-- 0.794³ ≈ 0.5006, clamped to m = 0.5 -->
+    </div>
+    <div class="row" id="divS-row" style="display:none"><!-- shown with Divergent selection; mirrors #selS -->
+      <label>Selection coefficient s <span class="val" id="v_divS">0.000</span></label>
+      <input type="range" id="divS" min="0" max="1" step="0.001" value="0">
     </div>
     <div class="seg" id="mig-model" role="group" aria-label="Migration model">
       <button type="button" data-model="stepping" aria-pressed="true">Stepping-stone</button>
       <button type="button" data-model="island" aria-pressed="false" data-kw="world">Island</button>
     </div>
+    <label class="chkrow" id="div-sel-row"><input type="checkbox" id="div-sel"> Divergent selection</label>
     <div id="migdiagram" class="migdiagram"></div>
   </div>
 
@@ -1074,7 +1080,9 @@
         and the post-selection allele frequency is
         <span class="eq-inline">p′ = (g<sub>AA</sub>w<sub>AA</sub> + ½·g<sub>Aa</sub>w<sub>Aa</sub>) / w̄</span>.<sup>[3,11]</sup>
         Because inbreeding exposes recessive homozygotes, larger <em>F</em> speeds selection
-        against a recessive allele.</li>
+        against a recessive allele. With <strong>divergent selection</strong> (two populations only),
+        population 2 uses the mirror-image fitnesses (w<sub>AA</sub> and w<sub>aa</sub> swapped), so
+        each population favours a different allele.</li>
       <li><strong>Mutation.</strong> Symmetric, recurrent mutation each generation:
         <span class="eq-inline">p′ = p(1&minus;u) + (1&minus;p)v</span>, with
         <span class="eq-inline">u = v = μ</span>. Applied every generation, so a fixed locus is
@@ -1083,7 +1091,12 @@
         immigrants every generation, drawn from the mean frequency <em>p̄</em> of its partners — the
         ≤2 line neighbours under <em>stepping-stone</em>, every other deme under <em>island</em>:
         <span class="eq-inline">p′ = (1&minus;m)p + m·p̄</span>. This convex combination always stays
-        in [0,&nbsp;1] for any <em>m</em>.<sup>[6,7]</sup></li>
+        in [0,&nbsp;1] for any <em>m</em>.<sup>[6,7]</sup> The slider stops at
+        <em>m</em>&nbsp;=&nbsp;0.5. For two populations the difference between them changes by
+        <span class="eq-inline">d′ = (1&minus;2m)d</span> each generation, so <em>m</em>&nbsp;=&nbsp;0.5
+        mixes them completely in one generation. Larger values are possible in principle (most individuals
+        breed away from where they were born), but then the populations trade places every generation
+        instead of blending, which is rarely what &ldquo;gene flow&rdquo; means.</li>
       <li><strong>Genetic drift.</strong> With finite <em>N</em>, the next generation is drawn as
         <em>N</em> diploids from the (inbred) genotype distribution:
         <span class="eq-inline">n<sub>AA</sub> ~ Binomial(N, g<sub>AA</sub>)</span>, then
@@ -1134,8 +1147,9 @@
         <tr><td>Selection coefficient</td><td><em>s</em></td><td>Selection against <em>aa</em>: <span class="eq-inline">s = 1 &minus; w<sub>aa</sub>/w<sub>AA</sub></span>.</td></tr>
         <tr><td>Dominance</td><td><em>h</em></td><td>Dominance of the selected allele: <span class="eq-inline">w<sub>Aa</sub> = 1 &minus; hs</span> (h=0 recessive, ½ additive, 1 dominant).</td></tr>
         <tr><td>Mutation rate</td><td>μ</td><td>Symmetric per-allele, per-generation rate (<span class="eq-inline">u = v = μ</span>).<sup>[3,4]</sup></td></tr>
-        <tr><td>Migration rate</td><td><em>m</em></td><td>Fraction of a population replaced by immigrants each generation (drawn from its partners' mean frequency).<sup>[6,7]</sup></td></tr>
+        <tr><td>Migration rate</td><td><em>m</em></td><td>Fraction of a population replaced by immigrants each generation (drawn from its partners' mean frequency); 0 to 0.5, where two populations are fully mixed.<sup>[6,7]</sup></td></tr>
         <tr><td>Migration model</td><td>—</td><td>Stepping-stone (a line of neighbours) or island (all-to-all); only the topology changes, not the meaning of <em>m</em>.<sup>[6,7]</sup></td></tr>
+        <tr><td>Divergent selection</td><td>—</td><td>Two populations only: population 2 gets the mirror-image fitnesses, so selection pulls the populations apart while migration pulls them together (migration–selection balance).</td></tr>
         <tr><td>Inbreeding coefficient</td><td><em>F</em></td><td>Fixed deviation from Hardy–Weinberg toward homozygotes (0 = random mating, 1 = selfing).<sup>[5]</sup></td></tr>
         <tr><td>Assortative mating</td><td>α</td><td>Fraction mating with their own genotype; homozygosity accrues over generations.<sup>[4]</sup></td></tr>
         <tr><td>Number of populations</td><td>—</td><td>Demes (1–5) connected by migration within one simulation.</td></tr>
@@ -1218,8 +1232,10 @@ function nFromRaw(raw){                         // slider position → N (or an 
   return niceN(N_MIN*Math.pow(N_MAX/N_MIN, raw/1000));
 }
 // Migration slider is cubic: position t∈[0,1] → m = t³, so small rates get fine control on the left.
-// Max m = 1 (whole deme replaced by immigrants); the convex migrate() form stays valid throughout.
-const migRate = ()=> Math.pow(+$('m').value, 3);
+// Capped at m = 0.5 (slider max 0.794): with two populations the difference between them changes by
+// (1−2m) per generation, so m = 0.5 already mixes them completely and m > 0.5 makes them swap places every
+// generation (a zigzag that fills the plot). The mapping m = t³ is unchanged, so share links keep their m.
+const migRate = ()=> Math.min(0.5, Math.pow(+$('m').value, 3));
 // Fitness sliders are cubic, mirror-image of selection: position t∈[0,1] → w = 1−(1−t)³, so fine
 // control near w=1.00. wInv is the inverse (w → position), used when the s/h sliders push back.
 const wMap = t => 1 - Math.pow(1-t, 3);
@@ -1453,6 +1469,23 @@ function updateMigUI(){
   const seg=$('mig-model');
   seg.style.opacity=dis?0.4:1; seg.style.pointerEvents=dis?'none':'';
 }
+// Divergent selection is defined for exactly two populations (population 2 gets mirrored fitnesses):
+// ticking it sets demes to 2 and locks that slider, and shows a copy of the Selection panel's s slider
+// under m (#divS, kept in sync both ways via selS) so the two rates sit side by side.
+function syncDivS(){ $('divS').value=$('selS').value; $('v_divS').textContent=$('v_selS').textContent; }
+function updateDivUI(){
+  const on=$('div-sel').checked, d=$('demes');
+  d.disabled=on; d.closest('.row').style.opacity=on?0.4:1;
+  $('divS-row').style.display=on?'':'none';
+  syncDivS();
+}
+$('div-sel').addEventListener('change', ()=>{
+  const d=$('demes');
+  if($('div-sel').checked && d.value!=='2'){ d.value='2'; d.dispatchEvent(new Event('input')); }
+  updateDivUI();
+});
+$('divS').addEventListener('input', ()=>{ const s=$('selS'); s.value=$('divS').value; s.dispatchEvent(new Event('input')); });
+for(const id of ['selS','wAA','wAa','waa']) $(id).addEventListener('input', syncDivS);
 let _lastDemes = P.demes;
 $('demes').addEventListener('input', ()=>{
   syncPlotUI();
@@ -1579,7 +1612,8 @@ function initState(){
   // plot" (doAddReps) can run its extra batch with the *run's* settings even if sliders moved since,
   // and Continue keeps the run's migration model rather than reading a since-toggled one.
   state={freq, history, histHobs, boundaries, cap, gen:0, reps, demes, infinite, geno, N:P.N, twoN:2*P.N,
-         btlOn, btlGen:P.btlGen, btlN:P.btlN, island:islandModel(), fAssort:0, params:{...P}, stats:null};
+         btlOn, btlGen:P.btlGen, btlN:P.btlN, island:islandModel(), fAssort:0, params:{...P}, stats:null,
+         divergent: $('div-sel').checked && demes===2};   // population 2 has mirrored fitnesses (AA ↔ aa)
 }
 
 // Continue extends the run past the preallocated capacity; grow each trajectory array once,
@@ -1634,10 +1668,12 @@ function stepGeneration(){
     // 1. selection + 2. mutation, per population, into tmp
     for(let d=0;d<demes;d++){
       let p=fr[d], q=1-p;
+      // divergent selection: population 2 has the mirror-image fitnesses, so each favours a different allele
+      const flip=state.divergent && d===1, wA=flip?waa:wAA, wa=flip?wAA:waa;
       // zygotes deviate from Hardy–Weinberg by the effective inbreeding Feff (F=0 & α=0 ⇒ HW)
       const fpq=Feff*p*q, gAA=p*p+fpq, gAa=2*p*q*(1-Feff), gaa=q*q+fpq;
-      const wbar = gAA*wAA + gAa*wAa + gaa*waa;
-      if(wbar>0) p = (gAA*wAA + 0.5*gAa*wAa)/wbar;
+      const wbar = gAA*wA + gAa*wAa + gaa*wa;
+      if(wbar>0) p = (gAA*wA + 0.5*gAa*wAa)/wbar;
       p = p*(1-u) + (1-p)*v;
       tmp[d]=p;
     }
@@ -2177,9 +2213,11 @@ function paintDots(plan, gen, opts){
   for(const c of plan.cells){
     if(plan.isFst){
       const st=state.stats;
+      // F_ST is stored per whole generation; a sub-generation frontier (fine-grained export) interpolates
+      const g0=Math.floor(gen), f=gen-g0, at=a=>f ? a[g0]*(1-f)+a[Math.min(g0+1,a.length-1)]*f : a[gen];
       if(!state.infinite && reps>1)
-        for(let r=repLo;r<repHi;r++) dot(c, c.x(gen), c.y(st.FSTrep[r][gen]), (showMean?1.6:2.3)*dotK, rgba(repShade(accentRGB,r,reps),0.75));
-      if(drawMeans && showMean) dot(c, c.x(gen), c.y(st.FSTo[gen]), 3.5*dotK, rgb(meanRGB));
+        for(let r=repLo;r<repHi;r++) dot(c, c.x(gen), c.y(at(st.FSTrep[r])), (showMean?1.6:2.3)*dotK, rgba(repShade(accentRGB,r,reps),0.75));
+      if(drawMeans && showMean) dot(c, c.x(gen), c.y(at(st.FSTo)), 3.5*dotK, rgb(meanRGB));
       continue;
     }
     if(!state.infinite){
@@ -2777,7 +2815,8 @@ function doAddReps(){
   }
   const temp={freq,history,histHobs,boundaries,cap,gen:0,reps:addReps,demes,
               infinite:main.infinite,geno:main.geno,N:main.N,twoN:main.twoN,
-              btlOn:main.btlOn,btlGen:main.btlGen,btlN:main.btlN,island:main.island,fAssort:0,stats:null};
+              btlOn:main.btlOn,btlGen:main.btlGen,btlN:main.btlN,island:main.island,fAssort:0,stats:null,
+              divergent:main.divergent};
   // run the batch to the run's generation count with P swapped to the snapshot (restored after);
   // stepGeneration reads P for selection/mutation/migration and `state` for everything else.
   const saved={}; for(const k in snap){ if(k in P){ saved[k]=P[k]; P[k]=snap[k]; } }
@@ -2852,7 +2891,7 @@ const SHARE_KEYS = Object.keys(P).filter(k=>k!=='gens' && $(k)).concat('mu');
 // bottleneck enable) at Run; controlsChanged flags UI drift; restoreControls snaps the UI back.
 const CTL_KEYS = SHARE_KEYS.concat('gens');
 function captureControls(){
-  const o={island:islandModel(), btlOn:$('btl-on').checked};
+  const o={island:islandModel(), btlOn:$('btl-on').checked, divSel:$('div-sel').checked};
   for(const k of CTL_KEYS){ const el=$(k); if(el) o[k]=el.value; }
   return o;
 }
@@ -2860,6 +2899,7 @@ function controlsChanged(snap){
   if(!snap) return false;
   if(snap.island!==islandModel()) return true;
   if(snap.btlOn!==$('btl-on').checked) return true;
+  if(snap.divSel!==$('div-sel').checked) return true;
   for(const k of CTL_KEYS){ const el=$(k); if(el && el.value!==snap[k]) return true; }
   return false;
 }
@@ -2876,6 +2916,7 @@ function restoreControls(snap){
   }
   const btl=$('btl-on');
   if(btl.checked!==snap.btlOn){ btl.checked=snap.btlOn; updateBtlUI(); }
+  $('div-sel').checked=snap.divSel; updateDivUI();
   if(_drawRAF){ cancelAnimationFrame(_drawRAF); _drawRAF=null; }   // drop the redraw the dispatches queued — Add renders explicitly next
 }
 // Show a small dot on the Add button + swap its tooltip whenever the live sliders differ from the run.
@@ -2897,7 +2938,7 @@ function updateAddUI(){
 //   cmask      base36 bitmask over SHARE_KEYS: bit i set ⇔ slider i differs from its HTML default. Only
 //              the differing values are then listed (cvals), so an all-default run costs one char here.
 //   cvals      the differing slider values in SHARE_KEYS order, '/'-joined (empty when cmask=0).
-//   migCode(1=island), btl, plotCode(indexes PLOT_MODES), optBits(plot-option checkbox bitmask).
+//   migCode(bit 0 = island, bit 1 = divergent selection), btl, plotCode(indexes PLOT_MODES), optBits(plot-option checkbox bitmask).
 // Default-omission keeps typical (few-sliders-changed) links a QR version smaller. It also gives free
 // forward-compat with *appended* sliders: an old link's cmask has no bit for a slider added later, so
 // that slider restores at its (current) default — hence **only ever append to P** (README §8). A link's
@@ -2920,7 +2961,7 @@ function encodeRun(){
   return [
     SHARE_FMT, state.seed.toString(36), state.gen.toString(36),
     cmask.toString(36), cvals.join('/'),
-    islandModel()?1:0,
+    (islandModel()?1:0) | ($('div-sel').checked?2:0),   // old links (0/1) decode with divergent off
     $('btl-on').checked?1:0,
     PLOT_MODES.indexOf(plotMode()),
     opt
@@ -2937,7 +2978,7 @@ function decodeRun(str){
   SHARE_KEYS.forEach((k,i)=>{ c[k] = +((cmask & (1<<i)) ? cvals[vi++] : SHARE_DEFAULTS[i]); });
   const O = parseInt(f[8],10)|0;
   return { s: parseInt(f[1],36)>>>0, g: parseInt(f[2],36), c,
-    mig: +f[5] ? 'island' : 'stepping', btl: +f[6],
+    mig: (+f[5] & 1) ? 'island' : 'stepping', div: +f[5] & 2, btl: +f[6],
     plot: PLOT_MODES[+f[7]]||'allele',
     opt:{ sep:O&1, hwe:O&2, anim:O&4, btlline:O&8, mean:O&16 } };
 }
@@ -3071,7 +3112,7 @@ function paramGroups(){
                               ['Demes',fmt.demes(S.demes)], ['Reps',fmt.reps(S.reps)]]},
     {title:'Selection & mutation', rows:[['s',s.toFixed(3)], ['h',h.toFixed(2)],
                               ['w (AA/Aa/aa)',`${fmt.wAA(S.wAA)}/${fmt.wAa(S.wAa)}/${fmt.waa(S.waa)}`],
-                              ['μ',S.u.toFixed(4)]]},
+                              ['μ',S.u.toFixed(4)]].concat(state.divergent ? [['Pop 2 w','mirrored']] : [])},
     {title:'Migration & mating', rows:mig},
   ];
 }
@@ -3475,6 +3516,7 @@ function applyShared(p){
   document.querySelectorAll('#mig-model button').forEach(b=> b.setAttribute('aria-pressed', String(b.dataset.model===p.mig)));
   updateMigModelUI();
   $('btl-on').checked=!!p.btl; updateBtlUI();
+  $('div-sel').checked=!!p.div; updateDivUI();
   $('plotmode').value=p.plot; syncPlotUI(); _seenModes.add(p.plot);
   const O=p.opt||{};
   $('opt-separate').checked=!!O.sep; updateSeparateLabel();
@@ -3510,8 +3552,10 @@ const tips={
   F:"Inbreeding coefficient (0 = random mating, 1 = selfing). Shifts genotypes toward homozygotes: p²+Fpq, 2pq(1−F), q²+Fpq. Raises F(F_IS), lowers observed heterozygosity.",
   assort:"Positive assortative mating: the fraction α of individuals that mate with their own genotype (rest mate randomly). Homozygote excess builds up over generations — F evolves F ← α(1+F)/2 toward equilibrium α/(2−α) — so unlike the fixed F slider you watch heterozygosity fall. Allele frequency is unchanged; combines with F as 1−(1−F_α)(1−F).",
   demes:"Populations connected by migration — in a line (stepping-stone) or all-to-all (island).",
-  m:"Fraction exchanged with each connected population per generation. 0 = isolated.",
+  m:"Fraction exchanged with each connected population per generation. 0 = isolated; 0.5 = two populations fully mixed (the maximum here).",
   'mig-model':"Migration topology: stepping-stone (each population exchanges m with its line neighbours) or island (with every other population).",
+  'div-sel':"Two populations, each favoring a different allele: population 2 gets the mirror-image fitnesses (AA and aa swapped). Locks the number of populations at 2 and shows s next to m, to explore migration–selection balance.",
+  divS:"The same selection coefficient as in the Selection panel, shown here to compare with m. Population 1 selects against aa, population 2 against AA.",
   'btl-on':"Turn on a population-size change (bottleneck) applied to every population.",
   btlN0:"Population size before the bottleneck — the same N as in the Population panel.",
   btlGens:"Total generations to simulate — the same as Generations in the Population panel.",
@@ -3632,6 +3676,7 @@ updateBtlUI();
 syncPlotUI();
 updateMigModelUI();
 updateMigUI();
+updateDivUI();
 updateAddUI();
 renderLegend();
 draw();
